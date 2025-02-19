@@ -41,12 +41,14 @@ const InfoCafeSecoChart = ({cafeSeco}) => {
         type: 'bar',
         data:cantidadCafe,
         yAxisIndex: 0, 
+        itemStyle: { color: '#1A4D2E' } 
       },
       {
         name: 'Valor café seco',
         type: 'bar',
         data: valorCafe,
         yAxisIndex: 1,
+        itemStyle: { color: '#2E7D32' }
       },
      
     ],

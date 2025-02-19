@@ -24,7 +24,7 @@ const Table = ({empleadosAsig,calcularSalario,abrirModalKilo,realizarPago}) => {
     <div className="overflow-x-scroll sm:overflow-x-scroll">                      
     <div className="table  sm:table-auto size-full border-separate border-spacing-0 table-sm sm:table-sm md:table-sm lg:table-md ">
           <thead className="bg-[#1A4D2E] text-xs md:text-sm text-[#E0D2B8] text-semibold">
-                <th className='w-1/4' >Id</th>
+                <th className='w-1' >Id</th>
                 <th>Empleado</th>
                 <th>Kilos</th>
                 <th>Salario</th>
@@ -88,24 +88,24 @@ const Table = ({empleadosAsig,calcularSalario,abrirModalKilo,realizarPago}) => {
          </div>
        
           <div className='flex  items-center gap-3'>
-      <span>
-          Página {paginaActual} de {totalPaginas}
-        </span>
-        <button
-          className="btn btn-sm  bg-[#1A4D2E] text-[#F4E3C0] border-none"
-          disabled={paginaActual === 1}
-          onClick={irAPaginaAnterior}
-        >
-          {"<"}
-        </button>
-      
-        <button
-           className="btn btn-sm  bg-[#1A4D2E] text-[#F4E3C0] border-none"
-          disabled={paginaActual === totalPaginas}
-          onClick={irAPaginaSiguiente}
-        >
-         {">"}
-        </button>
+               <span>
+                 Página {paginaActual} de {totalPaginas}
+               </span>
+               <button
+                 className="btn btn-sm  bg-[#1A4D2E] text-[#F4E3C0] border-none"
+                 disabled={paginaActual === 1}
+                 onClick={irAPaginaAnterior}
+               >
+                 {"<"}
+               </button>
+             
+               <button
+                  className="btn btn-sm  bg-[#1A4D2E] text-[#F4E3C0] border-none"
+                 disabled={paginaActual === totalPaginas}
+                 onClick={irAPaginaSiguiente}
+               >
+                {">"}
+               </button>
           </div>  
     </div>             
 </div>

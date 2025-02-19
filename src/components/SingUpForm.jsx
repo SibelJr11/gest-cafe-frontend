@@ -63,7 +63,7 @@ const SingUpForm = () => {
   };
 
   return (
-    <div className="card w-full max-w-xl  shrink-0 shadow-2xl bg-white">
+    <div className="card w-5/6 md:w-full max-w-xl shrink-0 shadow-2xl bg-white">
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -74,7 +74,7 @@ const SingUpForm = () => {
            <h3 className="text-xl md:text-2xl font-semibold text-[#1B1B1B] mb-2">
               Registro de usuario
             </h3>
-             <div className="grid  grid-cols-2 gap-2">
+             <div className="grid sm:grid-cols-12 md:grid-cols-2 md:gap-2">
               {/* Tipo de Rol */}
             <div className="form-control">
               <label className="label">

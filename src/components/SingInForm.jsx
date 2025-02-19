@@ -42,20 +42,20 @@ const SingInForm = () => {
 
 
   return (
-    <div className="card bg-white w-96 md:w-full max-w-sm shrink-0 shadow-2xl">
+    <div className="card bg-white w-5/6 md:w-full max-w-sm shrink-0 shadow-2xl">
       <Formik
         initialValues={{ no_identificacion: "", password: "" }}
         validationSchema={validationSchema}
         onSubmit={login}
       >
         {({ isSubmitting }) => (
-          <Form className="card-body p-9 md:p-8">
+          <Form className="card-body p-6 md:p-8">
             <div className="flex justify-center">
               <img src="/images/LOGO_GESTCAFE.jpg" className="w-20 sm:w-20 md:w-24" alt="Logo" />
             </div>
 
-            <div className="form-control mt-4">
-            <label className="text-sm mb-1  text-[#3F3F3F]">
+            <div className="form-control mt-2 md:mt-4">
+            <label className="text-sm mb-1 text-[#3F3F3F]">
                    Ingrese su usuario.
                   </label>
               <Field
@@ -73,7 +73,7 @@ const SingInForm = () => {
             </div>
 
             <div className="form-control">
-                 <label className="text-sm mb-1  text-[#3F3F3F]">
+                 <label className="text-sm mb-1 text-[#3F3F3F]">
                    Ingrese su contraseña.
                   </label>
               <Field

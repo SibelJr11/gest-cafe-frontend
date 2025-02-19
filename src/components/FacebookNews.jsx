@@ -12,8 +12,8 @@ const FacebookNews = () => {
     <div className="fb-page" 
          data-href="https://www.facebook.com/fedecafeteros" 
          data-tabs="timeline" 
-         data-width="" 
-         data-height="" 
+         data-width="100%" 
+         data-height="100%" 
          data-small-header="false" 
          data-adapt-container-width="true" 
          data-hide-cover="false" 
@@ -22,6 +22,8 @@ const FacebookNews = () => {
                  <a href="https://www.facebook.com/fedecafeteros">Federación Nacional de Cafeteros de Colombia</a>
            </blockquote>
     </div>
+
+    
   )
 }
 

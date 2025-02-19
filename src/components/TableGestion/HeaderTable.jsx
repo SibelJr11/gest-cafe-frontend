@@ -18,22 +18,22 @@ const HeaderTable = ({id_semana,dispatch,empleadosAsig}) => {
    
 
       return (
-            <div className="w-full flex justify-between mb-4">
+            <div className="w-full flex justify-between mb-6">
                   <div>
                         <h2 className="font-semibold  text-[#1B1B1B] text-lg md:text-2xl">
                               Gestión de empleados
                         </h2>
                   </div>
-                  <div className="flex gap-2">     
+                  <div className="flex flex-wrap justify-end gap-1">    
                   <button
-                              className="btn btn-sm sm:btn-sm lg:btn-md  bg-[#8C2F39] text-[#F4E3C0] border-none"
+                              className="btn btn-sm text-xs  sm:btn-sm lg:btn-md bg-[#1A4D2E] text-[#F4E3C0] border-none"
                               disabled={id_semana ? false : true}
                               onClick={finalizarSemanaTrabajo}
                         >
                                Finalizar
                         </button>           
                         <button
-                              className="btn btn-sm sm:btn-sm lg:btn-md  bg-[#8C2F39] text-[#F4E3C0] border-none"
+                              className="btn btn-sm text-xs  sm:btn-sm lg:btn-md  bg-[#1A4D2E] text-[#F4E3C0] border-none"
                               disabled={id_semana ? false : true}
                               onClick={() =>
                                     document
@@ -45,7 +45,7 @@ const HeaderTable = ({id_semana,dispatch,empleadosAsig}) => {
                               Asignar
                         </button>
                         <button
-                              className="btn btn-sm sm:btn-sm lg:btn-md  bg-[#8C2F39] text-[#F4E3C0] border-none"
+                              className="btn btn-sm text-xs sm:btn-sm lg:btn-md  bg-[#1A4D2E] text-[#F4E3C0] border-none"
                               disabled={id_semana ? false : true}
                               onClick={() =>
                                     document

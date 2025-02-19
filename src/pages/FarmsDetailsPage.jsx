@@ -69,7 +69,7 @@ const FarmsDetailsPage = () => {
                   
                 <div className="flex justify-between mt-2">
                      <h2 className="font-semibold text-[#1B1B1B] text-lg md:text-2xl">Mis fincas</h2>
-                     <button className="btn btn-md bg-[#1A4D2E] border-none text-[#F4E3C0]"   
+                     <button className="btn btn-sm text-xs sm:btn-sm lg:btn-md bg-[#1A4D2E] border-none text-[#F4E3C0]"   
                              onClick={() =>abrirModalFinca()}>
                         Nueva finca
                      </button>

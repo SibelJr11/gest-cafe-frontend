@@ -11,16 +11,17 @@ import CoffeeNewsPage from "./CoffeeNewsPage";
 
 const HomePage = () => {
   return (
-    <div className="drawer lg:drawer-open">
+    <div className="drawer lg:drawer-open ">
     <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
     <div className="drawer-content flex flex-col">
        {/* Navbar */}
-       <div className="fixed top-0 left-0 right-0 bg-white shadow-md h-16">
+       <div >
+
           <Navbar />
         </div>
 
         {/* Contenido de la página */}
-        <div className="flex-grow px-4 py-6 bg-gray-300 overflow-auto mt-16">
+        <div className="flex-grow p-4 bg-gray-300 overflow-auto h-full">
           <Routes>
             <Route path="table-gestion" element={<TableGestion />} />
             <Route path="table-sales" element={<TableGestionSales />}/> 

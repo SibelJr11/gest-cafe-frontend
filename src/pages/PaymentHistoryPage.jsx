@@ -69,7 +69,7 @@ const PaymentHistoryPage = () => {
                 <div className="mt-4 text-center">
                     <button
                         onClick={() => setPagina(pagina + 1)}
-                        className="px-4 py-2 bg-[#1A4D2E] text-[#F4E3C0] rounded-lg"
+                        className="btn btn-sm text-xs  sm:btn-sm lg:btn-md border-none bg-[#1A4D2E] text-[#F4E3C0] rounded-lg"
                         disabled={cargando} // Desactivar mientras se carga
                     >
                         {cargando ? "Cargando..." : "Ver más"}

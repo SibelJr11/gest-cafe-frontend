@@ -28,7 +28,7 @@ const Sidebar = () => {
             <span className="hidden md:inline-block ml-3 text-sm font-medium">Historial de Pagos</span>
           </Link>
         </li>
-        <li className="w-full">
+         <li className="w-full">
           <Link to='/home/farms-details' className="flex items-center justify-center md:justify-start p-4 hover:bg-[#2E7D32] transition-colors duration-300  w-full">
             <BuildingStorefrontIcon className="h-7 w-7 text-[#F4E3C0]" />
             <span className="hidden md:inline-block ml-3 text-sm font-medium">Mis Fincas</span>

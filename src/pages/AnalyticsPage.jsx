@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { getPagos_KilosByIdFincaYAño, getPagos_KilosByIdPropietarioYAño } from "../api/fincasApi";
-import CostChart from "../components/Graphics/ProductionChart";
+import CostChart from "../components/Graphics/CostChart";
 import FincaChart from "../components/Graphics/FincaChart";
-import ProductionChart from "../components/Graphics/CostChart";
+import ProductionChart from "../components/Graphics/ProductionChart";
 import InfoCafeSecoChart from "../components/Graphics/InfoCafeSecoChart";
 import InfoCafeVerdeChart from "../components/Graphics/InfoCafeVerdeChart";
 import InfoPasillaChart from "../components/Graphics/InfoPasillaChart";
@@ -105,14 +105,14 @@ return (
       <div className="grid grid-cols-12 gap-4 mt-4">
          {totalesFinca.length > 0 && (
            
-             <div className="card col-span-12 w-full sm:w-auto shadow-xl bg-white p-6 text-red">
-             <ProductionChart totalesFinca={totalesFinca} />
+             <div className="card col-span-12 w-full sm:w-auto shadow-xl bg-white p-6 ">
+             <CostChart  totalesFinca={totalesFinca} />
            </div>
          
          )}
          {totalesFinca.length > 0 && (
             <div className="card col-span-12 w-auto shadow-xl bg bg-white p-6">
-               <CostChart totalesFinca={totalesFinca} />
+               <ProductionChart totalesFinca={totalesFinca} />
             </div>
          )}
          {infoFincas.length > 0 && (

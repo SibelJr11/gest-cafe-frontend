@@ -40,15 +40,19 @@ const InfoPasillaChart = ({ pasilla }) => {
         name: 'Cantidad en kilos',
         type: 'bar',
         data: cantidadCafe,
-        yAxisIndex: 0, // Usar el eje Y principal (izquierda)
+        yAxisIndex: 0,
+        itemStyle: { color: '#1A4D2E' } 
       },
       {
         name: 'Valor pasilla',
         type: 'bar',
         data: valorCafe,
-        yAxisIndex: 1, // Usar el eje Y secundario (derecha)
+        yAxisIndex: 1,
+        itemStyle: { color: '#2E7D32' }
       },
-    ],
+    ]
+    
+    
   };
 
   return <ReactEcharts option={option} />;

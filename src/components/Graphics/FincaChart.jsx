@@ -22,13 +22,13 @@ const FincaChart = ({infoFincas}) => {
         name: 'Kilos recolectados',
         type: 'bar',
         data: kilos, // Kilos recolectados por finca
-        itemStyle: { color: '#06c91d' }
+        itemStyle: { color: '#1A4D2E'  }
       },
       {
         name: 'Pago de trabajadores',
         type: 'bar',
         data: pagos, // Pagos realizados por finca
-        itemStyle: { color: '#0c0467' }
+        itemStyle: { color: '#2E7D32' } 
       }
     ]
   };

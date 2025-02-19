@@ -38,8 +38,8 @@ const cerrarSesion = () => {
 
   return (
     <>
-       <div className="navbar bg-white w-full flex justify-between items-center">
-      <div className="flex-none ">
+       <div className="navbar bg-white w-full flex justify-between items-center h-16 z">
+      <div className="md:invisible">
       <img src="/images/LOGO_GESTCAFE.jpg" alt="Logo GestCafe" className="w-14" />
         <label htmlFor="my-drawer-3" aria-label="open sidebar" className="btn btn-square btn-ghost">
           <svg
