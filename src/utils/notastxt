@@ -1,0 +1,27 @@
+# 🎨 Manual de Colores Profesionales
+
+Este manual define la paleta de colores para garantizar un diseño **minimalista, profesional y elegante** en la aplicación.
+
+## 🌿 Colores Principales
+- **Verde Profesional:** #1A4D2E → Color base para elementos clave y branding.
+- **Rojo Terracota:** #8C2F39 → Para alertas sutiles y detalles contrastantes.
+- **Beige Crema:** #F4E3C0 → Fondo elegante y cálido para una apariencia premium.
+
+## 🟢 Tonos Complementarios
+- **Verde Secundario:** #2E7D32` → Para efectos hover y realces dinámicos.
+- **Rojo Profundo:** #732626` → Para énfasis en errores o advertencias importantes.
+- **Beige Suave:** #E0D2B8` → Para fondos secundarios y equilibrio visual.
+
+## 🖋️ Colores de Texto
+- **Negro Sofisticado:** #1B1B1B` → Para títulos principales y máxima legibilidad.
+- **Gris Profesional:** #3F3F3F` → Para contenido principal con un look elegante.
+- **Gris Sutil:** #5E5E5E` → Para texto secundario sin perder claridad.
+
+## 🏗️ Guía de Uso
+✅ **Botones y elementos clave** → Usa `#1A4D2E` para un look premium.
+✅ **Fondo de la app** → Usa `#F4E3C0` para una interfaz cálida y limpia.
+✅ **Títulos y textos importantes** → Usa `#1B1B1B` para contraste y elegancia.
+✅ **Acciones hover** → Usa `#2E7D32` en botones interactivos.
+✅ **Alertas y estados de error** → Usa `#8C2F39` o `#732626` con sutileza.
+
+📌 **Consejo:** Mantén la armonía en el diseño evitando el uso excesivo de colores fuertes. Usa los tonos neutros para dar equilibrio y resaltar solo lo esencial.
