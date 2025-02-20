@@ -6,10 +6,8 @@ const Sidebar = () => {
   return (
     <div className="drawer-side">
       <label htmlFor="my-drawer-3" aria-label="close sidebar" className="drawer-overlay"></label>
-      <ul className="menu bg-[#1A4D2E]  min-h-full w-16 md:w-60 flex flex-col items-start text-[#F4E3C0] ">
-        <li className="w-full">
-          <img src="/images/LOGO_GESTCAFE.jpg" alt="Logo GestCafe" className="w-24" />
-        </li>
+      <ul className="menu bg-[#1A4D2E]  min-h-full w-16 md:w-60 flex flex-col items-start text-[#F4E3C0] "> 
+
         <li className="w-full">
           <Link to='/home/table-gestion' className="flex items-center justify-center md:justify-start p-4 hover:bg-[#2E7D32] transition-colors duration-300  w-full">
             <PresentationChartLineIcon className="h-7 w-7 text-[#F4E3C0]" />

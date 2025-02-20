@@ -1,18 +1,36 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { registrarUsuario } from "../api/usuariosApi";
+import { registrarUsuario, verificarUsuario } from "../api/usuariosApi";
 import { showErrorAlert, showSuccessAlert } from "./Alerts/AlertService";
 import { useNavigate } from "react-router-dom";
 
 const SingUpForm = () => {
   const navigate = useNavigate();
+
+  const validarUsuarioExistente = async (no_identificacion) => {
+    if (!no_identificacion) return true; // Si no hay ID, pasa la validación (en caso de no asignar administrador)
+    try {
+        const response = await verificarUsuario(no_identificacion);
+        return !response.existe; // Retorna 'true' si el usuario no existe, 'false' si si
+    } catch (error) {
+        return true; // Si ocurre un error en la API, considera que el usuario si existe
+    }
+  };
+
   const validationSchema = Yup.object({
     rol: Yup.string().required("El tipo de rol es obligatorio *"),
     tipo_documento: Yup.string().required("El tipo de documento es obligatorio *"),
     no_identificacion: Yup.string()
       .required("El número de identificación es obligatorio *")
-      .matches(/^[0-9]+$/, "Debe contener solo números *"),
+      .matches(/^[0-9]+$/, "Debe contener solo números *")
+      .test(
+        "checkUsuarioExistente", // Nombre del test
+        "El usuario ya esta registrado en el sistema *", // Mensaje de error
+        async (value) => {
+          return await validarUsuarioExistente(value); // Llama a la función de validación
+        }
+      ),	
     nombres: Yup.string()
       .required("Los nombres son obligatorios *")
       .matches(/^[a-zA-Z\s]+$/, "Solo se permiten letras y espacios *")
@@ -63,7 +81,8 @@ const SingUpForm = () => {
   };
 
   return (
-    <div className="card w-5/6 md:w-full max-w-xl shrink-0 shadow-2xl bg-white">
+<div className="card rounded-none  w-full max-w-xl shrink-0 shadow-2xl bg-white md:rounded-2xl">
+
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -83,7 +102,7 @@ const SingUpForm = () => {
               <Field
                 as="select"
                 name="rol"
-                className="select select-bordered  max-w-xs focus:outline-none w-full px-3 py-2 border border-gray-200 rounded-lg bg-gray-50 text-[#1B1B1B]"
+                className="select select-bordered  focus:outline-none w-full px-3 py-2 border border-gray-200 rounded-lg bg-gray-50 text-[#1B1B1B]"
               >
                 <option value="" disabled>
                   Seleccione su rol
@@ -107,7 +126,7 @@ const SingUpForm = () => {
               <Field
                 as="select"
                 name="tipo_documento"
-                className="select select-bordered  max-w-xs focus:outline-none w-full px-3 py-2 border border-gray-200 rounded-lg  bg-gray-50 text-[#1B1B1B]"
+                className="select select-bordered  focus:outline-none w-full px-3 py-2 border border-gray-200 rounded-lg  bg-gray-50 text-[#1B1B1B]"
               >
                 <option value="" disabled>
                   Tipo
@@ -237,7 +256,7 @@ const SingUpForm = () => {
             </div>
             {/* Botón de Enviar */}
             <div className="form-control mt-4">
-              <button type="submit" className="btn bg-[#1A4D2E] text-[#F4E3C0] border-none" disable={isSubmitting}>
+              <button type="submit" className="btn bg-[#1A4D2E] text-[#F4E3C0] border-none" disabled={isSubmitting}>
                {isSubmitting ? 'Registrando...' : 'Registrar'}
               </button>
             </div>

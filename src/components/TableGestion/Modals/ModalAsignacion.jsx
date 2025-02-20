@@ -88,7 +88,7 @@ const ModalAsignacion = ({ id_semana }) => {
                     defaultOptions
                     loadOptions={loadEmpleados}
                     onChange={(selectedOption) =>
-                      setFieldValue("id_empleado", selectedOption?.value.id_empleado)
+                      setFieldValue("id_empleado", selectedOption.value.id_empleado)
                     }
                     noOptionsMessage={() => "No se encontraron empleados"}
                     loadingMessage={() => "Cargando..."}

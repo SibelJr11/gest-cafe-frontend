@@ -64,11 +64,11 @@ const Table = ({empleadosAsig,calcularSalario,abrirModalKilo,realizarPago}) => {
                                   </td>
                                   <th className="h-auto flex justify-center gap-2 flex-wrap border-b border-gray-300">
                                         <button
-                                              className="btn  btn-sm sm:btn-sm lg:btn-md text-white btn-primary "
+                                              className="btn  btn-sm text-xs sm:btn-sm lg:btn-md bg-[#1A4D2E] text-[#F4E3C0] border-none"
                                               onClick={()=>abrirModalKilo(e.id_asignacion)}>
                                               Kilos
                                         </button>
-                                        <button className="btn btn-sm sm:btn-sm lg:btn-md text-white btn-primary "
+                                        <button className="btn btn-sm text-xs sm:btn-sm lg:btn-md bg-[#1A4D2E] text-[#F4E3C0] border-none"
                                                 onClick={()=>realizarPago(e.id_asignacion,e.kilos)}>
                                               Pagar
                                         </button>

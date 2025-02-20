@@ -36,10 +36,21 @@ const cerrarSesion = () => {
     }, 1500);
 };
 
+    // Función para obtener las iniciales
+    const getInitials = (name) => {
+      return name
+        .split(" ") // Divide el nombre en palabras
+        .filter((word) => word.length > 0) // Elimina espacios vacíos
+        .map((word) => word[0]) // Toma la primera letra de cada palabra
+        .slice(0, 2) // Solo toma las dos primeras iniciales
+        .join("") // Une las iniciales
+        .toUpperCase(); // Convierte a mayúsculas
+    };
+
   return (
     <>
-       <div className="navbar bg-white w-full flex justify-between items-center h-16 z">
-      <div className="md:invisible">
+       <div className="navbar bg-white w-full flex justify-between items-center h-16 drop-shadow-2xl">
+      <div>
       <img src="/images/LOGO_GESTCAFE.jpg" alt="Logo GestCafe" className="w-14" />
         <label htmlFor="my-drawer-3" aria-label="open sidebar" className="btn btn-square btn-ghost">
           <svg
@@ -57,22 +68,21 @@ const cerrarSesion = () => {
       </div>
 
       <div>
-        <div>
+        <div className="flex flex-col p-2 font-semibold text-[#1B1B1B]">
        
-        <select className="select select-sm md:select-md w-full text-sm md:text-lg bg-white text-[#1B1B1B]" onChange={handleSelectChange}>
+        <select className="select select-sm w-full text-sm md:text-lg  bg-white" onChange={handleSelectChange}>
           {precios.map((precio, index) => (
             <option key={index} value={precio}>{convertirAPesosColombiano(precio)}</option>
           ))}
         </select>
+        <span className="text-xs text-center">Precio de la arroba</span>
         </div>
         <div className="dropdown dropdown-end ">
-          <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-            <div className="w-10 rounded-full">
-              <img
-                alt="Usuario"
-                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+            <div tabIndex={0} role="button"  className="avatar online placeholder">
+               <div className="bg-neutral text-white w-12 h-12 flex items-center justify-center rounded-full">
+                 <span className="text-xl">{getInitials(usuario.nombres)}</span>
+               </div>
             </div>
-          </div>
           <ul
             tabIndex={0}
             className="menu menu-sm dropdown-content  bg-white text-[#1B1B1B] rounded-box  mt-3 w-52 p-2 shadow z-96">

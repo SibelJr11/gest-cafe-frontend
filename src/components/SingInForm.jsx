@@ -42,7 +42,7 @@ const SingInForm = () => {
 
 
   return (
-    <div className="card bg-white w-5/6 md:w-full max-w-sm shrink-0 shadow-2xl">
+    <div className="card bg-white w-5/6 md:w-full max-w-sm shrink-0 shadow-2xl ">
       <Formik
         initialValues={{ no_identificacion: "", password: "" }}
         validationSchema={validationSchema}
