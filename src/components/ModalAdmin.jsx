@@ -5,7 +5,7 @@ import { showErrorAlert, showSuccessAlert } from "./Alerts/AlertService";
 import { useDispatch } from "react-redux";
 import { asignarAdmin } from "../api/fincasApi";
 import { verificarUsuario } from "../api/usuariosApi";
-import { actualizarEstado } from "./store/slices/stateSlice";
+import { actualizarEstado } from "../store/slices/stateSlice";
 
 
 const ModalAdmin = ({finca,dispatch}) => {

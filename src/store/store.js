@@ -2,22 +2,22 @@ import { configureStore } from "@reduxjs/toolkit";
 import coffeePriceSlice from "./slices/coffeePriceSlice";
 import stateSlice from "./slices/stateSlice";
 import stateSliceTable from "./slices/stateSliceTable";
-import userSlice from "./slices/userSlice";
+import authSlice from "./slices/authSlice";
 import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage"; // localStorage por defectoReducer principal
 
 const persistConfig = {
-      key: "user", // Clave para persistencia
+      key: "auth", // Clave para persistencia
       storage, // Almacenamiento, por defecto localStorage
 };
 
-const persistedUserReducer = persistReducer(persistConfig, userSlice);
+const persistedAuthReducer = persistReducer(persistConfig, authSlice);
 
 const store = configureStore({
       reducer: {
             precioArroba: coffeePriceSlice,
             estado: stateSlice,
-            usuario: persistedUserReducer,
+            auth: persistedAuthReducer, // Ahora guarda usuario + token
             estadoTablaGestion: stateSliceTable,
       },
 });

@@ -11,6 +11,7 @@ const TableVentas = () => {
       const estado = useSelector((state) => state.estado);
       const dispatch = useDispatch();
       const [ventas, setVentas] = useState([]);
+      const [dataVenta, setDataVenta] = useState({});
 
       useEffect(() => {fetchVentas()},[estado]);
 
@@ -23,21 +24,17 @@ const TableVentas = () => {
             }
       };
 
-
+      const abrirModalVenta = (venta) => {
+            setDataVenta(venta);
+            document.getElementById("modal_venta").showModal();
+          };
 
       return (
-            <>
-            <div className="card w-auto shadow-xl bg bg-white p-6">
+            <div className="card w-auto shadow-xl  bg-white p-4 md:p-6">
                   <HeaderTable/>
-                  <ModalVenta dispatch={dispatch}/>
-                  <Table ventas={ventas}/>                          
-               
+                  <ModalVenta dispatch={dispatch} venta={dataVenta} setDataVenta={setDataVenta}/>
+                  <Table ventas={ventas} abrirModalVenta={abrirModalVenta}/>            
             </div>
-
-               {/* <div className="card w-auto shadow-xl bg bg-white p-6 mt-4 border border-none">
-                        <FooterTable empleadosAsig={empleadosAsig} />
-                  </div>*/}  
-            </>
       );
 };
 

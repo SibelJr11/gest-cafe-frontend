@@ -4,7 +4,7 @@ import FacebookNews from "../components/FacebookNews";
 
 const CoffeeNewsPage = () => {
   return (
-    <div className="card w-auto shadow-xl bg-white p-6  min-h-screen">
+    <div className="card w-auto shadow-xl bg-white p-4 md:p-6  min-h-screen">
      
         {/* Encabezado */}
         <div className="flex items-center space-x-3">
@@ -14,7 +14,7 @@ const CoffeeNewsPage = () => {
 
 
         {/* Contenedor del iframe */}
-        <div className="mt-4 w-full  max-h-ful">
+        <div className="mt-4 w-full  bg-red-500">
          
           <FacebookNews/>
         

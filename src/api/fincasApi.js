@@ -5,7 +5,7 @@ export const registrarFinca = async (finca) => {
             const response = await axiosInstance.post("/api/fincas", finca);
             return response.data;
       } catch (error) {
-            console.error("Error al registrar la finca.", error);
+            console.error("Hubo un error al registrar la finca.", error);
             throw error;
       }
 };
@@ -17,7 +17,19 @@ export const getFincasPorIdPropietario = async (id_propietario) => {
             );
             return response.data;
       } catch (error) {
-            console.error("Error al mostrar las fincas.", error);
+            console.error("Hubo un error al mostrar las fincas.", error);
+            throw error;
+      }
+};
+
+export const getFincasPorIdAdministrador = async (id_administrador) => {
+      try {
+            const response = await axiosInstance.get(
+                  `/api/fincas/admin/${id_administrador}`
+            );
+            return response.data;
+      } catch (error) {
+            console.error("Hubo un error al mostrar las fincas.", error);
             throw error;
       }
 };
@@ -30,7 +42,7 @@ export const getPagos_KilosByIdFincaYAño = async (idFinca, año) => {
             return response.data;
       } catch (error) {
             console.error(
-                  "Error al mostrar los pagos y kilos de la finca.",
+                  "Hubo un error al mostrar los pagos y kilos de la finca.",
                   error
             );
             throw error;
@@ -48,7 +60,7 @@ export const getPagos_KilosByIdPropietarioYAño = async (
             return response.data;
       } catch (error) {
             console.error(
-                  "Error al mostrar los pagos y kilos de las fincas.",
+                  "Hubo un error al mostrar los pagos y kilos de las fincas.",
                   error
             );
             throw error;

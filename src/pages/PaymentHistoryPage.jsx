@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { CalendarIcon } from '@heroicons/react/24/solid';
 import { buscarTodosPagos } from '../api/pagosApi';
 import { useSelector } from 'react-redux';
-import { convertirAPesosColombiano, transformarFecha } from '../utils/formatter';
+import { convertirAPesosColombiano, formatearFechaConHora } from '../utils/formatter';
 
 const PaymentHistoryPage = () => {
     const [pagos, setPagos] = useState([]);
@@ -34,7 +34,7 @@ const PaymentHistoryPage = () => {
 
 
     return (
-        <div className="card w-auto shadow-xl bg-white p-6">
+        <div className="card w-auto shadow-xl bg-white p-4 md:p-6">
             <h1 className="text-lg md:text-2xl font-semibold text-[#1B1B1B] mb-4">Historial de Pagos</h1>
             <div className="space-y-4">
                 {pagos.map((p) => (
@@ -45,13 +45,13 @@ const PaymentHistoryPage = () => {
                         <div className="flex items-center space-x-4">
                             <CalendarIcon className="h-10 w-10 text-[#1A4D2E]" />
                             <div>
-                                <h2 className="text-md md:text-lg font-semibold text-[#3F3F3F]">{p.empleado}</h2>
-                                <p className="text-xs md:text-sm text-[#5E5E5E]">{transformarFecha(new Date(p.fecha))}</p>
+                                <h2 className="text-sm md:text-lg font-semibold text-[#3F3F3F]">{p.empleado}</h2>
+                                <p className="text-xs md:text-sm text-[#5E5E5E]">{formatearFechaConHora(p.fecha)}</p>
                                 <p className="text-xs md:text-sm text-[#5E5E5E]">{p.observacion}</p>
                             </div>
                         </div>
                         <div className="flex flex-col items-end">
-                            <span className="text-md md:text-lg font-bold text-[#1B1B1B]">
+                            <span className="text-sm md:text-lg font-bold text-[#1B1B1B]">
                                 {convertirAPesosColombiano(p.valor)}
                             </span>
                             <span

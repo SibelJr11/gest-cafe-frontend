@@ -1,22 +1,38 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import HomePage from './pages/HomePage';
-import LoginPage from './pages/LoginPage';
-import UserRegisterPage from './pages/UserRegisterPage';
-import FarmRegisterPage from './pages/FarmRegisterPage';
-import FarmsPage from './pages/FarmsPage';
-
-
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import routes from "./routes/AppRoutes";
+import ProtectedRoute from "./routes/ProtectedRoute";
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/home/*" element={<HomePage />} />
-        <Route path="/" element={<LoginPage />} />
-        <Route  path="/register-user" element={<UserRegisterPage />} />
-        <Route path="/register-farm" element={<FarmRegisterPage />} />
-        <Route path="/farms" element={<FarmsPage />} />
+        {/* Rutas Públicas */}
+        {routes
+          .filter((route) => route.isPublic)
+          .map((route, index) => (
+            <Route key={index} path={route.path} element={route.element} />
+          ))}
+
+        {/* Rutas Protegidas */}
+        <Route element={<ProtectedRoute />}>
+          {routes
+            .filter((route) => !route.isPublic)
+            .map((route, index) => (
+              <Route key={index} path={route.path} element={route.element}>
+                {/* Mapea las subrutas dentro de cada ruta principal */}
+                {route.children &&
+                  route.children.map((child, childIndex) => (
+                    <Route
+                      key={childIndex}
+                      index={child.index}
+                      path={child.path}
+                      element={child.element}
+                    />
+                  ))}
+              </Route>
+            ))}
+        </Route>
       </Routes>
     </Router>
   );

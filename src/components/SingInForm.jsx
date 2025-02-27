@@ -5,7 +5,7 @@ import { loginUsuario } from "../api/usuariosApi";
 import { showErrorAlert, showSuccessAlert } from "./Alerts/AlertService";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import {setUsuario} from "./store/slices/userSlice";
+import { setAuth } from "../store/slices/authSlice";
 
 
 const SingInForm = () => {
@@ -27,14 +27,15 @@ const SingInForm = () => {
   const login = async (values, { resetForm }) => {
     try {
         const response = await loginUsuario(values);
-        dispatch(setUsuario(response.usuario));
+        const { usuario, token } = response;
+        dispatch(setAuth({usuario,token}));
         const nombresUsuario = response.usuario?.nombres;
         const apellidosUsuario = response.usuario?.apellidos;
-        showSuccessAlert(`Bienvenido, ${nombresUsuario+" "+ apellidosUsuario}!`,response.message,2000);
+        showSuccessAlert(`Bienvenido, ${nombresUsuario+" "+ apellidosUsuario}`,response.message,2000);
         resetForm();
         navigate("/farms");
     } catch (error) {
-        showErrorAlert("Error al iniciar sesión", error.response.data.error);
+        showErrorAlert("Hubo un error al iniciar sesión", error.response.data.error);
     }
 };
 

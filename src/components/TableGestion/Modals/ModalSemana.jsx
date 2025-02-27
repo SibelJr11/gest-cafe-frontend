@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { actualizarEstado } from "../../store/slices/stateSlice";
+import { actualizarEstado } from "../../../store/slices/stateSlice";
 import { registrarNuevaSemana } from "../../../api/semanasApi";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";

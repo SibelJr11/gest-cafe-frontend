@@ -1,4 +1,5 @@
 import React from "react";
+import { ShoppingCartIcon } from "@heroicons/react/24/solid";
 
 const HeaderTable = () => {
 
@@ -11,16 +12,14 @@ const HeaderTable = () => {
                         </h2>
                   </div>
                   <div className="flex gap-2">     
-                        <button
-                              className="btn btn-sm text-xs sm:btn-sm lg:btn-md bg-[#1A4D2E] text-[#F4E3C0] border-none "
-                              onClick={() =>
-                                    document
-                                          .getElementById("modal_venta")
-                                          .showModal()
-                              }
-                        >
-                               Nueva venta
-                        </button>
+                    <button
+                      className="btn btn-sm text-xs sm:btn-sm lg:btn-md bg-[#1A4D2E] text-[#F4E3C0] border-none flex items-center gap-2"
+                      onClick={() => document.getElementById("modal_venta").showModal()}
+                    >
+                      <ShoppingCartIcon className="h-5 w-5" />
+                      Nueva venta
+                    </button>
+
                   </div>
             </div>
       );

@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { actualizarEstado } from "../../store/slices/stateSlice";
+import { actualizarEstado } from "../../../store/slices/stateSlice";
 import { registrarKilos } from "../../../api/jornalesApi";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -76,7 +76,7 @@ const ModalKilo = ({ id_asignacion }) => {
               <div className="flex justify-end mt-4">
                 <button
                   type="submit"
-                  className="btn bg-[#1A4D2E] text-[#F4E3C0]"
+                  className="btn bg-[#1A4D2E] text-[#F4E3C0] border-none"
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? "Guardando..." : "Guardar"}

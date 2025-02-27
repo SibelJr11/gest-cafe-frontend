@@ -5,7 +5,7 @@ import { editarFinca, registrarFinca } from "../api/fincasApi";
 import { showConfirmationAlert, showErrorAlert, showSuccessAlert } from "./Alerts/AlertService";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { actualizarEstado } from "./store/slices/stateSlice";
+import { actualizarEstado } from "../store/slices/stateSlice";
 
 const FarmRegisterForm = ({finca}) => {
   const usuario = useSelector((state) => state.usuario);
@@ -20,15 +20,18 @@ const FarmRegisterForm = ({finca}) => {
 const validationSchema = Yup.object({
   nombre: Yup.string()
     .required("El nombre es obligatorio *")
-    .matches(/^[a-zA-Z\s]+$/, "Solo se permiten letras y espacios *")
+    .matches(/^[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ\s]+$/, "Solo se permiten letras y espacios")
+
     .min(2, "Debe tener al menos 2 caracteres *"),
   ubicacion: Yup.string()
     .required("La ubicación es obligatoria *")
-    .matches(/^[a-zA-Z\s]+$/, "Solo se permiten letras y espacios *")
+    .matches(/^[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ\s]+$/, "Solo se permiten letras y espacios")
+
     .min(2, "Debe tener al menos 2 caracteres *"),
   cultivo: Yup.string()
     .required("El tipo de cultivo es obligatorio *")
-    .matches(/^[a-zA-Z\s]+$/, "Solo se permiten letras y espacios *")
+    .matches(/^[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ\s]+$/, "Solo se permiten letras y espacios")
+
     .min(2, "Debe tener al menos 2 caracteres *"),
   hectareas: Yup.string()
     .required("El número de hectáreas es obligatorio *")

@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const coffeePriceSlice = createSlice({
       name: "precioArroba",
       initialState: {
-            precio: 0,
+            precio: 10000,
       },
       reducers: {
             actualizarPrecioArroba: (state, action) => {

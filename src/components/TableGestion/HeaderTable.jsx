@@ -1,18 +1,18 @@
 import React from "react";
 import { finalizarSemana } from "../../api/semanasApi";
-import { actualizarEstado } from "../store/slices/stateSlice";
+import { actualizarEstado } from "../../store/slices/stateSlice";
 import { showErrorAlert, showSuccessAlert } from "../Alerts/AlertService";
+import { CheckCircleIcon, UserPlusIcon, ClipboardDocumentCheckIcon } from "@heroicons/react/24/solid";
 
-const HeaderTable = ({id_semana,dispatch,empleadosAsig}) => {
-
+const HeaderTable = ({id_semana,dispatch}) => {
 
       const finalizarSemanaTrabajo =async()=>{
             try {
                   const response = await finalizarSemana(id_semana);
-                  showSuccessAlert("Felicidades",response.message);
+                  showSuccessAlert(response.message);
                   dispatch(actualizarEstado());
             } catch (error) {
-                  showErrorAlert("Error al finalizar la semana:",error.response.data.error)
+                  showErrorAlert("Hubo un error al finalizar la semana:",error.response.data.error)
             }
       }
    
@@ -24,37 +24,31 @@ const HeaderTable = ({id_semana,dispatch,empleadosAsig}) => {
                               Gestión de empleados
                         </h2>
                   </div>
-                  <div className="flex flex-wrap justify-end gap-1">    
-                  <button
-                              className="btn btn-sm text-xs  sm:btn-sm lg:btn-md bg-[#1A4D2E] text-[#F4E3C0] border-none"
-                              disabled={id_semana ? false : true}
-                              onClick={finalizarSemanaTrabajo}
-                        >
-                               Finalizar
-                        </button>           
-                        <button
-                              className="btn btn-sm text-xs  sm:btn-sm lg:btn-md  bg-[#1A4D2E] text-[#F4E3C0] border-none"
-                              disabled={id_semana ? false : true}
-                              onClick={() =>
-                                    document
-                                          .getElementById("modal_asignacion")
-                                          .showModal()
-                              }
-                            
-                        >
-                              Asignar
-                        </button>
-                        <button
-                              className="btn btn-sm text-xs sm:btn-sm lg:btn-md  bg-[#1A4D2E] text-[#F4E3C0] border-none"
-                              disabled={id_semana ? false : true}
-                              onClick={() =>
-                                    document
-                                          .getElementById("modal_empleado")
-                                          .showModal()
-                              }
-                        >
-                               Empleado
-                        </button>
+                  <div className="flex flex-wrap justify-end gap-1">   
+
+                    <button
+                    className={`btn btn-sm text-xs  lg:btn-md flex items-center gap-2 bg-[#1A4D2E] text-[#F4E3C0] border-none ${!id_semana ? "hidden" : ""}`}
+                      onClick={finalizarSemanaTrabajo}
+                    >
+                      <CheckCircleIcon className="h-5 w-5" />
+                      Finalizar
+                    </button>
+                    
+                    <button className={`btn btn-sm text-xs  lg:btn-md flex items-center gap-2 bg-[#1A4D2E] text-[#F4E3C0] border-none ${!id_semana ? "hidden" : ""}`}
+                            onClick={() => document.getElementById("modal_asignacion").showModal()} 
+                    > 
+                      <ClipboardDocumentCheckIcon className="h-5 w-5" /> 
+                      Asignar 
+                    </button> 
+                     
+                    <button 
+                        className={`btn btn-sm text-xs  lg:btn-md flex items-center gap-2 bg-[#1A4D2E] text-[#F4E3C0] border-none ${!id_semana ? "hidden" : ""}`}                      
+                        onClick={() => document.getElementById("modal_empleado").showModal()}
+                    >
+                      <UserPlusIcon className="h-5 w-5" />
+                      Empleado
+                    </button>
+
                   </div>
             </div>
       );

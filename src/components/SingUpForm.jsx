@@ -33,11 +33,13 @@ const SingUpForm = () => {
       ),	
     nombres: Yup.string()
       .required("Los nombres son obligatorios *")
-      .matches(/^[a-zA-Z\s]+$/, "Solo se permiten letras y espacios *")
+      .matches(/^[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ\s]+$/, "Solo se permiten letras y espacios")
+
       .min(2, "Debe tener al menos 2 caracteres *"),
     apellidos: Yup.string()
       .required("Los apellidos son obligatorios *")
-      .matches(/^[a-zA-Z\s]+$/, "Solo se permiten letras y espacios *")
+      .matches(/^[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ\s]+$/, "Solo se permiten letras y espacios")
+
       .min(2, "Debe tener al menos 2 caracteres *"),
     celular: Yup.string()
       .required("El número celular es obligatorio *")
@@ -68,7 +70,7 @@ const SingUpForm = () => {
                  const response = await registrarUsuario(values);
                  showSuccessAlert(response.message);
                  if(values.rol === 'PROPIETARIO'){
-                  localStorage.setItme("propietario",values.no_identificacion);
+                  localStorage.setItem("propietario",values.no_identificacion);
                    navigate('/register-farm');
                    resetForm();
                  }else{
@@ -107,7 +109,7 @@ const SingUpForm = () => {
                 <option value="" disabled>
                   Seleccione su rol
                 </option>
-                <option value="CAFICULTOR/PROPIETARIO">CAFICULTOR / PROPIETARIO</option>
+                <option value="PROPIETARIO">CAFICULTOR / PROPIETARIO</option>
                 <option value="ADMINISTRADOR">ADMINISTRADOR</option>
               </Field>
               <ErrorMessage

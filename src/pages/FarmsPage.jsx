@@ -1,21 +1,32 @@
 import React, { useEffect, useState } from 'react';
-import { getFincasPorIdPropietario } from '../api/fincasApi';
+import { getFincasPorIdAdministrador, getFincasPorIdPropietario } from '../api/fincasApi';
 import {useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 const FarmsPage = () => {
     const[fincas,setFincas] = useState([]);
-    const usuario = useSelector(state => state.usuario);
+    const usuario = useSelector(state => state.auth.usuario);
     const navigate = useNavigate();
 
     useEffect(() => {
-       mostrarFincas();
+       if(usuario.rol === 'PROPIETARIO'){
+        fetchFincasPropietario();
+       }else{
+        fetchFincasAdministrador();
+       }
       }, []);
   
-       const mostrarFincas = async () =>{
-         const response = await getFincasPorIdPropietario(usuario.no_identificacion);
-         setFincas(response.data);
-       } 
+      const fetchFincasPropietario = async () => {
+        const response = await getFincasPorIdPropietario(usuario.no_identificacion);
+        setFincas(response.data);
+      }
+
+      const fetchFincasAdministrador = async () => {
+        const response = await getFincasPorIdAdministrador(usuario.no_identificacion);
+        setFincas(response.data);
+      }
+
+
 
        const guardarIdFincaYRedirigir = (id_finca,nombre) => {
          sessionStorage.setItem('id_finca',id_finca);

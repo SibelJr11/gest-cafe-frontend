@@ -1,12 +1,13 @@
 import { useState } from "react";
-import { registrarVenta } from "../../../api/ventasApi";
-import { actualizarEstado } from "../../store/slices/stateSlice";
+import { editarVenta, registrarVenta } from "../../../api/ventasApi";
+import { actualizarEstado } from "../../../store/slices/stateSlice";
 import { showErrorAlert, showSuccessAlert } from "../../Alerts/AlertService";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
 //Modal para registrar ventas de café
-const ModalVenta = ({dispatch}) => {
+const ModalVenta = ({dispatch,venta,setDataVenta}) => {
+       const isEditing = Boolean(venta?.id_venta);
 
         const validationSchema = Yup.object({
             fecha: Yup.date()
@@ -19,10 +20,10 @@ const ModalVenta = ({dispatch}) => {
         });
       
         const initialValues = {
-            fecha: '',
-            cantidad: '',
-            valor:'',
-            tipo_cafe:'',
+            fecha:venta?.fecha || "",
+            cantidad:venta?.cantidad || '',
+            valor:venta?.valor || '',
+            tipo_cafe:venta?.tipo_cafe || '',
             id_finca:sessionStorage.getItem('id_finca')
       };
       
@@ -37,10 +38,30 @@ const ModalVenta = ({dispatch}) => {
             }
       };
 
+      const modificarVenta = async (values,{ resetForm }) => {
+        try {
+              const response = await editarVenta(venta.id_venta,values);
+              showSuccessAlert(response.message);
+              cerrarModal(resetForm); 
+               dispatch(actualizarEstado());
+        } catch (error) {
+              showErrorAlert("Hubo un error al modificar la venta!",error.response.data.error)
+        }
+  };
+
       const cerrarModal = (resetForm) =>{
+        setDataVenta({});
         resetForm();
         document.getElementById("modal_venta").close()
-  }
+       }
+
+       const submitVentas =async(values, { resetForm })=>{
+         if (venta) {
+           await modificarVenta(values, { resetForm });
+         } else {
+           await guardarVenta(values, { resetForm });
+         }
+       };
 
       return (
             <dialog id="modal_venta" className="modal">
@@ -49,7 +70,7 @@ const ModalVenta = ({dispatch}) => {
                 <Formik
                   initialValues={initialValues}
                   validationSchema={validationSchema}
-                  onSubmit={guardarVenta}
+                  onSubmit={submitVentas}
                   enableReinitialize 
                 >
                   {({ isSubmitting,resetForm,values}) => (
@@ -62,7 +83,7 @@ const ModalVenta = ({dispatch}) => {
                         ✕
                       </button>
                       <h3 className="text-xl font-semibold  text-[#1B1B1B] mb-4">
-                        Nueva venta
+                      {isEditing ? 'Modificar datos de la venta' : 'Nueva venta' }
                       </h3>
         
                       {/* Fecha de venta */}
@@ -74,6 +95,7 @@ const ModalVenta = ({dispatch}) => {
                       <Field
                         type="date"
                         name="fecha"
+                        value={values.fecha ? new Date(values.fecha).toISOString().split("T")[0] : ""}
                        className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none  bg-gray-50 text-[#1B1B1B]"  
                       />
                       <ErrorMessage
@@ -154,7 +176,7 @@ const ModalVenta = ({dispatch}) => {
                           type="submit"
                           disabled={isSubmitting}
                         >
-                         {isSubmitting ? "Guardando..." : "Guardar"}
+                               {isEditing ? (isSubmitting ? "Modificando..." : "Modificar") : (isSubmitting ? "Guardando..." : "Guardar")}
                         </button>
                       </div>
                     </Form>

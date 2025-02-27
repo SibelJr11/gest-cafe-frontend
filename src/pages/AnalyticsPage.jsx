@@ -7,7 +7,7 @@ import InfoCafeSecoChart from "../components/Graphics/InfoCafeSecoChart";
 import InfoCafeVerdeChart from "../components/Graphics/InfoCafeVerdeChart";
 import InfoPasillaChart from "../components/Graphics/InfoPasillaChart";
 import { useDispatch, useSelector } from "react-redux";
-import { actualizarEstado } from "../components/store/slices/stateSlice";
+import { actualizarEstado } from "../store/slices/stateSlice";
 import {getInfoVentasCafeSeco, getInfoVentasCafeVerde, getInfoVentasPasilla } from "../api/ventasApi";
 
 const AnalyticsPage = () => {
@@ -22,7 +22,7 @@ const AnalyticsPage = () => {
  const dispatch = useDispatch();
  const nombreFinca=sessionStorage.getItem('nombre_finca');
  const idFinca = sessionStorage.getItem('id_finca');
- const no_identificacion = useSelector(state => state.usuario.no_identificacion);
+ const no_identificacion = useSelector(state => state.auth.usuario.no_identificacion);
 
 
 
@@ -91,7 +91,7 @@ const AnalyticsPage = () => {
 
 return (
    <div>
-      <div className="flex justify-between p-4">
+      <div className="flex justify-between mt-2 p-2">
          <h1 className="font-semibold text-[#1B1B1B] text-lg md:text-2xl">Análisis de Café (Finca {nombreFinca})</h1>
          <div className="">
             <select className="select select-sm md:select-md w-full text-sm md:text-lg bg-white text-[#1B1B1B]" onChange={handleChange}>

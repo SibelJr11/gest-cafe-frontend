@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { actualizarEstado } from "../../store/slices/stateSlice";
+import { actualizarEstado } from "../../../store/slices/stateSlice";
 import { registrarNuevoEmpleado } from "../../../api/empleadosApi";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -11,6 +11,7 @@ const ModalEmpleado = () => {
 
   const validationSchema = Yup.object({
     nombre: Yup.string()
+      .matches(/^[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ\s]+$/, "Solo se permiten letras y espacios")
       .required("El nombre es obligatorio *"),
   });
 

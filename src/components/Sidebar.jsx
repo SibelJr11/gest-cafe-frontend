@@ -1,8 +1,10 @@
 import React from 'react';
 import { ChartBarIcon, HomeIcon, CurrencyDollarIcon, PresentationChartLineIcon, BuildingStorefrontIcon, TagIcon } from '@heroicons/react/24/solid';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const Sidebar = () => {
+  const usuario = useSelector((state) => state.auth.usuario);
   return (
     <div className="drawer-side">
       <label htmlFor="my-drawer-3" aria-label="close sidebar" className="drawer-overlay"></label>
@@ -26,12 +28,15 @@ const Sidebar = () => {
             <span className="hidden md:inline-block ml-3 text-sm font-medium">Historial de Pagos</span>
           </Link>
         </li>
+
+         {usuario.rol === 'PROPIETARIO' ? (
          <li className="w-full">
           <Link to='/home/farms-details' className="flex items-center justify-center md:justify-start p-4 hover:bg-[#2E7D32] transition-colors duration-300  w-full">
             <BuildingStorefrontIcon className="h-7 w-7 text-[#F4E3C0]" />
             <span className="hidden md:inline-block ml-3 text-sm font-medium">Mis Fincas</span>
           </Link>
         </li>
+        ) : null }
         <li className="w-full">
           <Link to='/home/analytics' className="flex items-center justify-center md:justify-start p-4 hover:bg-[#2E7D32] transition-colors duration-300  w-full">
             <ChartBarIcon className="h-7 w-7 text-[#F4E3C0]" />

@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { actualizarEstado } from "../../store/slices/stateSlice";
+import { actualizarEstado } from "../../../store/slices/stateSlice";
 import { registrarAsignacion } from "../../../api/asignacionesApi";
 import { Formik, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -7,21 +7,35 @@ import { showErrorAlert, showSuccessAlert } from "../../Alerts/AlertService";
 import { getEmpleadosByName } from "../../../api/empleadosApi";
 import AsyncSelect from "react-select/async";
 
-const ModalAsignacion = ({ id_semana }) => {
+const ModalAsignacion = ({ id_semana,empleadosAsig}) => {
   const dispatch = useDispatch();
 
   const validationSchema = Yup.object({
-    id_empleado: Yup.string().required("El empleado es obligatorio *"),
+    id_empleado: Yup.object({
+      value: Yup.string().required("El empleado es obligatorio *"),
+      label: Yup.string(), // No es obligatorio, solo decorativo
+    }).required("El empleado es obligatorio *"),
   });
+  
 
   const initialValues = {
-    id_empleado: "",
+    id_empleado: null,
     id_semana: id_semana,
   };
 
   const asignarEmpleado = async (values, { resetForm }) => {
+      const payload = {
+      ...values,
+      id_empleado: values.id_empleado.value, // 🔹 Extraer solo el ID
+    };
+
+    if (verificarEmpleadoAsignado(payload.id_empleado,resetForm)) {
+      return; 
+    }
+  
     try {
-      const response = await registrarAsignacion(values);
+
+      const response = await registrarAsignacion(payload);
       showSuccessAlert(response.message);
       cerrarModal(resetForm);
       dispatch(actualizarEstado());
@@ -33,13 +47,23 @@ const ModalAsignacion = ({ id_semana }) => {
     }
   };
 
+  const verificarEmpleadoAsignado  = (id_empleado,resetForm)=>{
+    const isAsigned = empleadosAsig.some(e=>e.id_empleado ===id_empleado);
+    if(isAsigned){
+      cerrarModal(resetForm);
+         showErrorAlert("Error al asignar empleado","El empleado ya se encuentra asignado a esta semana");
+         return true;
+      };
+        return false;
+}
+
   const loadEmpleados = async (valor) => {
     try {
       if (!valor) return [];
       const response = await getEmpleadosByName(valor);
       return response.data.map((e) => ({
         value: e.id_empleado,
-        label: `${e.nombre} - ${e.id_empleado}`,
+        label: `${e.nombre}`,
       }));
     } catch (error) {
       console.error("Hubo un error al recuperar los empleados.", error);
@@ -60,6 +84,8 @@ const ModalAsignacion = ({ id_semana }) => {
             initialValues={initialValues}
             validationSchema={validationSchema}
             onSubmit={asignarEmpleado}
+            enableReinitialize
+            
           >
             {({ isSubmitting, setFieldValue, resetForm, values }) => (
               <Form>
@@ -88,12 +114,13 @@ const ModalAsignacion = ({ id_semana }) => {
                     defaultOptions
                     loadOptions={loadEmpleados}
                     onChange={(selectedOption) =>
-                      setFieldValue("id_empleado", selectedOption.value.id_empleado)
+                      setFieldValue("id_empleado", selectedOption)
                     }
+                    value={values.id_empleado} // 🔹 Asegurar que Formik lo controle
                     noOptionsMessage={() => "No se encontraron empleados"}
                     loadingMessage={() => "Cargando..."}
                     className="border border-gray-200 rounded-lg focus:outline-none  bg-gray-50 text-[#1B1B1B]"
-                    value={values.id_empleado}
+                   
                   />
 
                   <ErrorMessage
