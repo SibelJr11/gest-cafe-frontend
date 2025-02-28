@@ -36,7 +36,7 @@ const FarmsPage = () => {
 
 
   return (
-    <div className="h-full md:h-screen flex flex-col bg-white p-4" >
+    <div className="h-screen  flex flex-col bg-white p-4" >
      
        <span className='text-center text-lg md:text-2xl font-semibold text-[#1B1B1B] mt-4'>Mis fincas cafeteras</span>
        <p className="text-sm md:text-md mt-4 text-[#3F3F3F]">Selecciona o haz clic en la finca que deseas gestionar.</p>

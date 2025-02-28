@@ -52,11 +52,11 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="navbar bg-white w-full flex justify-between items-center h-16 drop-shadow-2xl px-3">
+      <div className="navbar bg-white w-full flex justify-between items-center h-20 drop-shadow-2xl px-2">
         {/* Botón de menú */}
-        <div>
-          <label htmlFor="my-drawer-3" aria-label="open sidebar" className="btn btn-square btn-ghost">
-            <img src="/images/LOGO_GESTCAFE.jpg" alt="Logo GestCafe" className="w-14 md:w-24" />
+        <div className='w-auto'>
+          <label htmlFor="my-drawer-3" aria-label="open sidebar">
+            <img src="/images/LOGO_GESTCAFE.jpg" alt="Logo GestCafe" className="w-14 md:w-16" />
           </label>
         </div>
 
@@ -74,7 +74,7 @@ const Navbar = () => {
                 <option key={index} value={precio}>{convertirAPesosColombiano(precio)}</option>
               ))}
             </select>
-            <span className="text-xs text-center">Precio de la arroba</span>
+            <span className="text-xs text-center">Precio arroba</span>
           </div>
 
           {/* Menú desplegable de usuario */}
@@ -86,7 +86,7 @@ const Navbar = () => {
             </div>
             <ul
                tabIndex={0}
-               className="menu menu-sm dropdown-content  bg-white text-[#1B1B1B] rounded-box mt-3 w-44 p-2 shadow z-10"
+               className="fixed top-[80px] right-5 menu menu-sm dropdown-content  bg-white text-[#1B1B1B] rounded-box mt-3 w-44 p-2 shadow z-50"
              >
   <li className="flex items-center ">
     <a>

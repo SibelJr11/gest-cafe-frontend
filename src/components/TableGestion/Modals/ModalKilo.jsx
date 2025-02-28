@@ -55,7 +55,7 @@ const ModalKilo = ({ id_asignacion }) => {
                 ✕
               </button>
               <h3 className="text-xl font-semibold text-[#1B1B1B] mb-4">
-                Agregar Kilos
+                Agregar kilos
               </h3>
               <div>
                 <label className="block text-sm font-medium mb-1 text-[#3F3F3F]">

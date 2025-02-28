@@ -8,7 +8,7 @@ const HeaderTable = () => {
             <div className="w-full flex justify-between mb-6">
                   <div>
                         <h2 className="font-semibold  text-[#1B1B1B] text-lg lg:text-2xl">
-                              Gestión de ventas de café
+                              Ventas de café
                         </h2>
                   </div>
                   <div className="flex gap-2">     

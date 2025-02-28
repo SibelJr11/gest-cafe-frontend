@@ -53,7 +53,7 @@ const ModalAdelantos = ({historial,setHistorial,id_asignacion,dispatch}) => {
           ✕
         </button>
         <h3 className="text-xl font-semibold  text-[#1B1B1B] mb-2">
-            Registrar Adelanto
+            Registrar adelanto
         </h3>
         <label className="block text-sm mb-1  text-[#3F3F3F] ">
            Ingrese el monto del adelanto.
