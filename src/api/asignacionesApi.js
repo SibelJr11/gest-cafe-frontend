@@ -8,7 +8,7 @@ export const registrarAsignacion = async (asignacion) => {
             );
             return response.data;
       } catch (error) {
-            console.error("Error al registrar la asignacion:", error);
+            console.error("Hubo un error al registrar la asignacion:", error);
             throw error;
       }
 };
@@ -20,7 +20,7 @@ export const recuperarEmpleadosAsignados = async (id_finca) => {
             );
             return response.data;
       } catch (error) {
-            console.error("Error al mostrar los empleados asignados:", error);
+            console.error("Hubo un error al mostrar los empleados asignados:", error);
             throw error;
       }
 };

@@ -26,6 +26,7 @@ const TableVentas = () => {
 
       const abrirModalVenta = (venta) => {
             setDataVenta(venta);
+            console.log(venta)
             document.getElementById("modal_venta").showModal();
           };
 

@@ -4,13 +4,9 @@ import axiosInstance from "./axiosIntance";
 export const registrarPago = async (pago) => {
       try {
             const response = await axiosInstance.post("/api/pagos", pago);
-            return Swal.fire({
-                  title: "Felicidades",
-                  text: response.data.message,
-                  icon: "success",
-            });
+            return response.data;
       } catch (error) {
-            console.error("Error al registrar el pago:", error);
+            console.error("Hubo un error al registrar el pago:", error);
             throw error;
       }
 };
@@ -22,7 +18,7 @@ export const buscarTodosPagos = async (id_finca, pagina) => {
             );
             return response.data;
       } catch (error) {
-            console.error("Error al cargar los pagos:", error);
+            console.error("Hubo un error al cargar los pagos:", error);
             throw error;
       }
 };

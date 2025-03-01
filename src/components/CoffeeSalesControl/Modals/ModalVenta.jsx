@@ -56,7 +56,7 @@ const ModalVenta = ({dispatch,venta,setDataVenta}) => {
        }
 
        const submitVentas =async(values, { resetForm })=>{
-         if (venta) {
+         if (isEditing) {
            await modificarVenta(values, { resetForm });
          } else {
            await guardarVenta(values, { resetForm });
@@ -96,7 +96,7 @@ const ModalVenta = ({dispatch,venta,setDataVenta}) => {
                         type="date"
                         name="fecha"
                         value={values.fecha ? new Date(values.fecha).toISOString().split("T")[0] : ""}
-                       className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none  bg-gray-50 text-[#1B1B1B]"  
+                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none  bg-gray-50 text-[#1B1B1B]"  
                       />
                       <ErrorMessage
                         name="fecha"
@@ -114,7 +114,7 @@ const ModalVenta = ({dispatch,venta,setDataVenta}) => {
                              name="cantidad"
                              value={values.cantidad}
                              placeholder="Cantidad"
-                             className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none  bg-gray-50 text-[#1B1B1B]"
+                             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none  bg-gray-50 text-[#1B1B1B]"
                            />
                            <ErrorMessage
                              name="cantidad"
@@ -133,7 +133,7 @@ const ModalVenta = ({dispatch,venta,setDataVenta}) => {
                              name="valor"
                              placeholder="Valor"
                              value={values.valor}
-                             className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none  bg-gray-50 text-[#1B1B1B]"
+                             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none  bg-gray-50 text-[#1B1B1B]"
                            />
                            <ErrorMessage
                              name="valor"
@@ -151,7 +151,7 @@ const ModalVenta = ({dispatch,venta,setDataVenta}) => {
                         <Field
                           as="select"
                           name="tipo_cafe"
-                          className="select select-bordered w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none  bg-gray-50 text-[#1B1B1B]"
+                          className="select select-bordered w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none  bg-gray-50 text-[#1B1B1B]"
                         >
                           <option value="" disabled>
                             Tipo café

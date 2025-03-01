@@ -29,7 +29,7 @@ const ModalSemana = ({ hacerVisibleTable }) => {
       dispatch(actualizarEstado());
       hacerVisibleTable();
     } catch (error) {
-      showErrorAlert("Error al registrar la semana!", error.response.data.error);
+      showErrorAlert("Hubo un error al registrar la semana!", error.response.data.error);
     }
   };
 
@@ -67,7 +67,7 @@ const ModalSemana = ({ hacerVisibleTable }) => {
                 <Field
                   type="date"
                   name="fecha_inicio"
-                  className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none bg-gray-50 text-[#1B1B1B]"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none bg-gray-50 text-[#1B1B1B]"
                 />
                 <ErrorMessage
                   name="fecha_inicio"
@@ -83,7 +83,7 @@ const ModalSemana = ({ hacerVisibleTable }) => {
                 <Field
                   type="date"
                   name="fecha_fin"
-                  className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none bg-gray-50 text-[#1B1B1B]"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none bg-gray-50 text-[#1B1B1B]"
                 />
                 <ErrorMessage
                   name="fecha_fin"

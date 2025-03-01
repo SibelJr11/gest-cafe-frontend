@@ -2,12 +2,12 @@ import React  from 'react'
 import { useSelector } from 'react-redux';
 import { convertirAPesosColombiano } from '../../utils/formatter';
 
-const FooterTable = ({empleadosAsig}) => {
+const FooterTable = ({empleados}) => {
 
    const precioArroba = useSelector((state) => state.precioArroba.precio);
 
     const calcularTotalKilos = () =>{
-      return empleadosAsig.reduce((acum, total) => acum + total.kilos, 0);
+      return empleados.reduce((acum, total) => acum + Number(total.kilos), 0);
     }
 
    const calcularTotalPagar = () => {

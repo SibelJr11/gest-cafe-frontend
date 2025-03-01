@@ -90,7 +90,7 @@ const SingUpForm = () => {
         validationSchema={validationSchema}
         onSubmit={guardarUsuario}
       >
-        {({isSubmitting}) => (
+        {({isSubmitting,handleChange, handleBlur}) => (
           <Form className="card-body">
            <h3 className="text-xl md:text-2xl font-semibold text-[#1B1B1B] mb-2">
               Registro de usuario
@@ -104,7 +104,7 @@ const SingUpForm = () => {
               <Field
                 as="select"
                 name="rol"
-                className="select select-bordered  focus:outline-none w-full px-3 py-2 border border-gray-200 rounded-lg bg-gray-50 text-[#1B1B1B]"
+                className="select select-bordered  focus:outline-none w-full px-3 py-2 border border-gray-300 rounded-lg bg-gray-50 text-[#1B1B1B]"
               >
                 <option value="" disabled>
                   Seleccione su rol
@@ -128,7 +128,7 @@ const SingUpForm = () => {
               <Field
                 as="select"
                 name="tipo_documento"
-                className="select select-bordered  focus:outline-none w-full px-3 py-2 border border-gray-200 rounded-lg  bg-gray-50 text-[#1B1B1B]"
+                className="select select-bordered  focus:outline-none w-full px-3 py-2 border border-gray-300 rounded-lg  bg-gray-50 text-[#1B1B1B]"
               >
                 <option value="" disabled>
                   Tipo
@@ -136,8 +136,6 @@ const SingUpForm = () => {
                 <option value="CÉDULA DE CIUDADANIA">CEDULA DE CIUDADANIA</option>
                 <option value="CÉDULA DE EXTRANJERIA">CEDULA DE EXTRANJERIA</option>
                 <option value="NIT">NIT</option>
-                <option value="NUIP">NUIP</option>
-                <option value="PASAPORTE">PASAPORTE</option>
               </Field>
               <ErrorMessage
                 name="tipo_documento"
@@ -155,7 +153,7 @@ const SingUpForm = () => {
                 type="text"
                 name="no_identificacion"
                 placeholder="No. Identificación"
-                className="input input-bordered w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none bg-gray-50 text-[#1B1B1B]"
+                className="input input-bordered w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none bg-gray-50 text-[#1B1B1B]"
               />
               <ErrorMessage
                 name="no_identificacion"
@@ -173,8 +171,9 @@ const SingUpForm = () => {
                 type="text"
                 name="nombres"
                 placeholder="Nombres"
-                className="input input-bordered w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none bg-gray-50 text-[#1B1B1B]"
-              
+                className="input input-bordered w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none bg-gray-50 text-[#1B1B1B]"
+                onChange={(e) => handleChange(e.target.name)(e.target.value.toUpperCase())}
+                onBlur={handleBlur}
               />
               <ErrorMessage
                 name="nombres"
@@ -192,7 +191,9 @@ const SingUpForm = () => {
                 type="text"
                 name="apellidos"
                 placeholder="Apellidos"
-                className="input input-bordered w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none bg-gray-50 text-[#1B1B1B]"
+                className="input input-bordered w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none bg-gray-50 text-[#1B1B1B]"
+                onChange={(e) => handleChange(e.target.name)(e.target.value.toUpperCase())}
+                onBlur={handleBlur}
               />
               <ErrorMessage
                 name="apellidos"
@@ -210,7 +211,7 @@ const SingUpForm = () => {
                 type="text"
                 name="celular"
                 placeholder="Celular"
-                className="input input-bordered w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none bg-gray-50 text-[#1B1B1B]"
+                className="input input-bordered w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none bg-gray-50 text-[#1B1B1B]"
               />
               <ErrorMessage
                 name="celular"
@@ -230,7 +231,7 @@ const SingUpForm = () => {
                 type="email"
                 name="correo"
                 placeholder="Ingrese su correo electrónico"
-                className="input input-bordered w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none bg-gray-50 text-[#1B1B1B]"
+                className="input input-bordered w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none bg-gray-50 text-[#1B1B1B]"
               />
               <ErrorMessage
                 name="correo"
@@ -247,7 +248,7 @@ const SingUpForm = () => {
               <Field
                 type="password"
                 name="password"
-                className="input input-bordered w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none bg-gray-50 text-[#1B1B1B]"
+                className="input input-bordered w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none bg-gray-50 text-[#1B1B1B]"
               />
               <ErrorMessage
                 name="password"

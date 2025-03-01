@@ -6,7 +6,7 @@ import * as Yup from "yup";
 import { showErrorAlert, showSuccessAlert } from "../../Alerts/AlertService";
 
 
-const ModalEmpleado = () => {
+const ModalEmpleado = ({setTermino}) => {
   const dispatch = useDispatch();
 
   const validationSchema = Yup.object({
@@ -32,6 +32,7 @@ const ModalEmpleado = () => {
 
   const cerrarModal = (resetForm) =>{
       resetForm();
+      setTermino("");
       document.getElementById("modal_empleado").close()
 }
 
@@ -44,7 +45,7 @@ const ModalEmpleado = () => {
             validationSchema={validationSchema}
             onSubmit={guardarEmpleado}
           >
-            {({ isSubmitting,resetForm }) => (
+            {({ isSubmitting,resetForm,handleChange, handleBlur }) => (
               <Form>
                 {/* Botón cerrar */}
                 <button
@@ -66,8 +67,10 @@ const ModalEmpleado = () => {
                   <Field
                     type="text"
                     name="nombre"
-                    className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none  bg-gray-50 text-[#1B1B1B]"
-                    placeholder="Nombre"               
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none  bg-gray-50 text-[#1B1B1B]"
+                    placeholder="Nombre"   
+                    onChange={(e) => handleChange(e.target.name)(e.target.value.toUpperCase())}
+                    onBlur={handleBlur}            
                   />
                   <ErrorMessage
                     name="nombre"

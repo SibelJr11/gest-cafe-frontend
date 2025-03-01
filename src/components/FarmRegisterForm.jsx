@@ -81,7 +81,7 @@ const validationSchema = Yup.object({
 
 
  const submitFincas =async(values, { resetForm })=>{
-    if (finca) {
+    if (isEditing) {
       await modificarFinca(values, { resetForm });
     } else {
       await guardarFinca(values, { resetForm });
@@ -103,7 +103,7 @@ const cerrarModal = (resetForm) =>{
         validationSchema={validationSchema}
         onSubmit={submitFincas}
       >
-        {({ isSubmitting,resetForm }) => (
+        {({ isSubmitting,resetForm,handleChange, handleBlur}) => (
           <Form className="card-body">
             {location.pathname !== ruta ? ( 
             <button
@@ -128,8 +128,9 @@ const cerrarModal = (resetForm) =>{
                   type="text"
                   name="nombre"
                   placeholder="Nombre"
-                  className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none bg-gray-50 text-[#1B1B1B]"
-
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none bg-gray-50 text-[#1B1B1B]"
+                  onChange={(e) => handleChange(e.target.name)(e.target.value.toUpperCase())}
+                  onBlur={handleBlur}
                 />
                 <ErrorMessage
                   name="nombre"
@@ -147,8 +148,9 @@ const cerrarModal = (resetForm) =>{
                   type="text"
                   name="ubicacion"
                   placeholder="Ubicación"
-                  className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none bg-gray-50 text-[#1B1B1B]"
-
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none bg-gray-50 text-[#1B1B1B]"
+                  onChange={(e) => handleChange(e.target.name)(e.target.value.toUpperCase())}
+                  onBlur={handleBlur}
                 />
                 <ErrorMessage
                   name="ubicacion"
@@ -166,8 +168,9 @@ const cerrarModal = (resetForm) =>{
                   type="text"
                   name="cultivo"
                   placeholder="Cultivo"
-                  className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none bg-gray-50 text-[#1B1B1B]"
-
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none bg-gray-50 text-[#1B1B1B]"
+                  onChange={(e) => handleChange(e.target.name)(e.target.value.toUpperCase())}
+                  onBlur={handleBlur}
                 />
                 <ErrorMessage
                   name="cultivo"
@@ -185,7 +188,7 @@ const cerrarModal = (resetForm) =>{
                   type="text"
                   name="hectareas"
                   placeholder="Tamaño"
-                  className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none bg-gray-50 text-[#1B1B1B]"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none bg-gray-50 text-[#1B1B1B]"
                 />
                 <ErrorMessage
                   name="hectareas"

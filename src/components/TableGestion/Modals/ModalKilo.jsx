@@ -5,7 +5,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { showErrorAlert, showSuccessAlert } from "../../Alerts/AlertService";
 
-const ModalKilo = ({ id_asignacion }) => {
+const ModalKilo = ({ id_asignacion,setTermino}) => {
   const dispatch = useDispatch();
 
   const validationSchema = Yup.object({
@@ -28,12 +28,13 @@ const ModalKilo = ({ id_asignacion }) => {
       cerrarModal(resetForm);
       dispatch(actualizarEstado());
     } catch (error) {
-      showErrorAlert("Error al registrar el jornal!", error.response.data.error);
+      showErrorAlert("Hubo un error al registrar el jornal!", error.response.data.error);
     }
   };
 
   const cerrarModal = (resetForm) => {
     resetForm();
+    setTermino("");
     document.getElementById("modal_kilos").close();
   };
 
@@ -64,7 +65,7 @@ const ModalKilo = ({ id_asignacion }) => {
                 <Field
                   type="number"
                   name="kilos"
-                  className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none bg-gray-50 text-[#1B1B1B]"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none bg-gray-50 text-[#1B1B1B]"
                   placeholder="Kilos"
                 />
                 <ErrorMessage

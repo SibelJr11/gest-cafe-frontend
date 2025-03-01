@@ -5,7 +5,7 @@ export const registrarUsuario = async (usuario) => {
             const response = await axiosInstance.post("/api/usuarios", usuario);
             return response.data;
       } catch (error) {
-            console.error("Error al registrar el usuario:", error);
+            console.error("Hubo un error al registrar el usuario:", error);
             throw error;
       }
 };
@@ -18,7 +18,7 @@ export const loginUsuario = async (credenciales) => {
             );
             return response.data;
       } catch (error) {
-            console.error("Error al iniciar sesión", error);
+            console.error("Hubo un error al iniciar sesión", error);
             throw error;
       }
 };
@@ -30,7 +30,7 @@ export const verificarUsuario = async (id_administrador) => {
             );
             return response.data;
       } catch (error) {
-            console.error("Error al verificar este usuario", error);
+            console.error("Hubo un error al verificar este usuario", error);
             throw error;
       }
 };

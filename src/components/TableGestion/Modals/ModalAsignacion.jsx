@@ -7,7 +7,7 @@ import { showErrorAlert, showSuccessAlert } from "../../Alerts/AlertService";
 import { getEmpleadosByName } from "../../../api/empleadosApi";
 import AsyncSelect from "react-select/async";
 
-const ModalAsignacion = ({ id_semana,empleadosAsig}) => {
+const ModalAsignacion = ({ id_semana,empleados,setTermino}) => {
   const dispatch = useDispatch();
 
   const validationSchema = Yup.object({
@@ -48,7 +48,7 @@ const ModalAsignacion = ({ id_semana,empleadosAsig}) => {
   };
 
   const verificarEmpleadoAsignado  = (id_empleado,resetForm)=>{
-    const isAsigned = empleadosAsig.some(e=>e.id_empleado ===id_empleado);
+    const isAsigned = empleados.some(e=>e.id_empleado ===id_empleado);
     if(isAsigned){
       cerrarModal(resetForm);
          showErrorAlert("Error al asignar empleado","El empleado ya se encuentra asignado a esta semana");
@@ -73,6 +73,7 @@ const ModalAsignacion = ({ id_semana,empleadosAsig}) => {
 
   const cerrarModal = (resetForm) => {
     resetForm();
+    setTermino("");
     document.getElementById("modal_asignacion").close();
   };
 
@@ -119,7 +120,7 @@ const ModalAsignacion = ({ id_semana,empleadosAsig}) => {
                     value={values.id_empleado} // 🔹 Asegurar que Formik lo controle
                     noOptionsMessage={() => "No se encontraron empleados"}
                     loadingMessage={() => "Cargando..."}
-                    className="border border-gray-200 rounded-lg focus:outline-none  bg-gray-50 text-[#1B1B1B]"
+                    className="border border-gray-300 rounded-lg focus:outline-none  bg-gray-50 text-[#1B1B1B] "
                    
                   />
 

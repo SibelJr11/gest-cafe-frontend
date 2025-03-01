@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getPagos_KilosByIdFincaYAño, getPagos_KilosByIdPropietarioYAño } from "../api/fincasApi";
 import CostChart from "../components/Graphics/CostChart";
-import FincaChart from "../components/Graphics/FincaChart";
+import FincasChart from "../components/Graphics/FincasChart";
 import ProductionChart from "../components/Graphics/ProductionChart";
 import InfoCafeSecoChart from "../components/Graphics/InfoCafeSecoChart";
 import InfoCafeVerdeChart from "../components/Graphics/InfoCafeVerdeChart";
@@ -41,7 +41,7 @@ const AnalyticsPage = () => {
          const response = await getPagos_KilosByIdFincaYAño(idFinca, year);
          setTotalesFinca(response.data);
       } catch (error) {
-         console.error("Error al mostrar los pagos y kilos de la finca:", error);
+         console.error("Hubo un error al mostrar los pagos y kilos de la finca:", error);
       }
    };
 
@@ -50,7 +50,7 @@ const AnalyticsPage = () => {
          const response = await getPagos_KilosByIdPropietarioYAño(no_identificacion, year);
          setInfoFincas(response.data);
       } catch (error) {
-         console.error("Error al mostrar los pagos y kilos de la fincas:", error);
+         console.error("Hubo un error al mostrar los pagos y kilos de la fincas:", error);
       }
    };
 
@@ -59,7 +59,7 @@ const AnalyticsPage = () => {
          const response = await getInfoVentasCafeSeco(idFinca,year);
          setCafeSeco(response.data);
       } catch (error) {
-         console.error("Error al mostrar la información de ventas de café seco:", error);
+         console.error("Hubo un error al mostrar la información de ventas de café seco:", error);
       }
    };
   
@@ -69,7 +69,7 @@ const AnalyticsPage = () => {
          const response = await getInfoVentasCafeVerde(idFinca,year);
          setCafeVerde(response.data);
       } catch (error) {
-         console.error("Error al mostrar la información de ventas de café verde:", error);
+         console.error("Hubo un error al mostrar la información de ventas de café verde:", error);
       }
    };
 
@@ -78,7 +78,7 @@ const AnalyticsPage = () => {
          const response = await getInfoVentasPasilla(idFinca,year);
          setPasilla(response.data);
       } catch (error) {
-         console.error("Error al mostrar la información de ventas de pasilla:", error);
+         console.error("Hubo un error al mostrar la información de ventas de pasilla:", error);
       }
    };
 
@@ -117,7 +117,7 @@ return (
          )}
          {infoFincas.length > 0 && (
             <div className="card col-span-12 w-auto shadow-xl bg bg-white p-6">
-               <FincaChart infoFincas={infoFincas} />
+               <FincasChart infoFincas={infoFincas} />
             </div>
          )}
          {cafeSeco.length > 0 && (

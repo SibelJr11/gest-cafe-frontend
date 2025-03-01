@@ -11,17 +11,19 @@ import { convertirAPesosColombiano } from "../../utils/formatter";
 import { traerUltimoIdSemana } from "../../api/semanasApi";
 import { actualizarEstado } from "../../store/slices/stateSlice";
 import { registrarPago } from "../../api/pagosApi";
-import { showErrorAlert } from "../Alerts/AlertService";
+import { showErrorAlert, showSuccessAlert } from "../Alerts/AlertService";
 import Table from "./Table";
 import ModalHistorialKilos from "./Modals/ModalHistorialKilos";
 import { getHistorialKilosByEmpleado } from "../../api/jornalesApi";
 import ModalAdelantos from "./Modals/ModalAdelantos";
 import { getHistorialAdelantosByEmpleado } from "../../api/adelantosApi";
+import SearchInput from "./SearchInput";
 
 const TableGestion = () => {
       const precioArroba = useSelector((state) => state.precioArroba.precio);
       const [id_semana, set_IdSemana] = useState("");
-      const [empleadosAsig, setEmpleadosAsig] = useState([]);
+      const [empleados, setEmpleados] = useState([]);
+      const [termino, setTermino] = useState("");
       const [historial,setHistorial] = useState({});
       const [id_asignacion, setIdAsignacion] = useState("");
       const id_finca = sessionStorage.getItem("id_finca");
@@ -33,22 +35,23 @@ const TableGestion = () => {
             traerIdSemana();
       }, [estado]);
 
+
       const traerIdSemana = async () => {
             try {
                   const response = await traerUltimoIdSemana(id_finca);
                   set_IdSemana(response.data);
             } catch (error) {
-                  console.error("Error al recuperar la ultima semana:", error);
+                  console.error("Hubo un error al recuperar la ultima semana:", error);
             }
       };
 
       const traerEmpleadosAsignados = async () => {
             try {
-                  const response = await recuperarEmpleadosAsignados(id_finca);
-                  setEmpleadosAsig(response.data);
+                  const response = await recuperarEmpleadosAsignados(id_finca);           
+                  setEmpleados(response.data);
             } catch (error) {
                   console.error(
-                        "Error al mostrar los empleados asignados:",
+                        "Hubo un error al mostrar los empleados asignados:",
                         error
                   );
             }
@@ -95,9 +98,7 @@ const TableGestion = () => {
             setIdAsignacion(idAsignacion);
             fetchHistorialAdelantos(idAsignacion)
             document.getElementById("modal_adelantos").showModal();
-      };
-     
-       
+      };    
 
       const realizarPago = async (id_asignacion, kilos) => {
             if (kilos === 0) {
@@ -112,7 +113,9 @@ const TableGestion = () => {
                   const valor = kilos * valor_Kilo;
                   const observacion = `Recolecto ${kilos} kilos. Se pagó la arroba a: ${convertirAPesosColombiano(precioArroba)} y el kilo a: ${convertirAPesosColombiano(valor_Kilo)}.`;
                   const pago = { valor, observacion, id_asignacion };
-                  await registrarPago(pago);
+                  const response = await registrarPago(pago);
+                  showSuccessAlert(response.message);
+                  setTermino("");
                   dispatch(actualizarEstado());
             } catch (error) {
                   showErrorAlert(
@@ -122,20 +125,29 @@ const TableGestion = () => {
             }
       }
 
+    // 🔍 **Filtrar empleados en cada render**
+   const empleadosAsig = empleados.filter(emp =>
+       emp.nombre.toLowerCase().includes(termino.toLowerCase())
+    );
       return (
             <>
                   <div className="card w-auto shadow-xl bg-white p-4 md:p-6">
                         <HeaderTable id_semana={id_semana} dispatch={dispatch} />
-                        <ModalEmpleado />
+                        <ModalEmpleado setTermino={setTermino}/>
                         <ModalSemana  dispatch={dispatch}/>
                         <ModalAsignacion
                               id_semana={id_semana}
-                              empleadosAsig={empleadosAsig}
+                              empleados={empleados}
+                              setTermino={setTermino}
                         />
-                        <ModalKilo id_asignacion={id_asignacion} />
-                        <ModalHistorialKilos historial={historial} setHistorial={setHistorial}/>
-                        <ModalAdelantos historial={historial} setHistorial={setHistorial} id_asignacion={id_asignacion} dispatch={dispatch} />
-                        {id_semana ? (
+                        <ModalKilo id_asignacion={id_asignacion} setTermino={setTermino}/>
+                        <ModalHistorialKilos historial={historial} setHistorial={setHistorial} setTermino={setTermino}/>
+                        <ModalAdelantos historial={historial} setHistorial={setHistorial} setTermino={setTermino} id_asignacion={id_asignacion} dispatch={dispatch} />
+                   
+
+                       {id_semana ? (
+                        <>
+                              <SearchInput termino={termino} setTermino={setTermino} />
                                <Table
                                empleadosAsig={empleadosAsig}
                                calcularSalario={calcularSalario}
@@ -143,7 +155,8 @@ const TableGestion = () => {
                                abrirModalHistorialKilos={abrirModalHistorialKilos}
                                abrirModalHistorialAdelantos={abrirModalHistorialAdelantos}
                                realizarPago={realizarPago}
-                             />                          
+                             />  
+                        </>                        
                         ) : (
                               <button
                               className="btn btn-md md:btn-lg bg-[#1A4D2E] border-none text-[#F4E3C0]"
@@ -158,7 +171,7 @@ const TableGestion = () => {
                         )}
                   </div>
                   <div className="card w-auto shadow-xl bg bg-white p-6 mt-4 border border-none">
-                        <FooterTable empleadosAsig={empleadosAsig} />
+                        <FooterTable empleados={empleados} />
                   </div>
             </>
       );

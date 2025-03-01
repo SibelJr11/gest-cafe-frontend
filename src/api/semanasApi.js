@@ -5,7 +5,7 @@ export const registrarNuevaSemana = async (semana) => {
             const response = await axiosInstance.post("/api/semanas", semana);
             return response.data;
       } catch (error) {
-            console.error("Error al guardar la semana:", error);
+            console.error("Hubo un error al guardar la semana:", error);
             throw error;
       }
 };
@@ -17,7 +17,7 @@ export const traerUltimoIdSemana = async (id_finca) => {
             );
             return response.data;
       } catch (error) {
-            console.error("Error al recuperar la ultima semana", error);
+            console.error("Hubo un error al recuperar la ultima semana", error);
             throw error;
       }
 };
@@ -29,7 +29,7 @@ export const finalizarSemana = async (id_semana) => {
             );
             return response.data;
       } catch (error) {
-            console.error("Error al finalizar la semana:", error);
+            console.error("Hubo un error al finalizar la semana:", error);
             throw error;
       }
 };

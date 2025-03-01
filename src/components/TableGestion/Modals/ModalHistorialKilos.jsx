@@ -1,12 +1,12 @@
 import React from "react";
-import { CalendarIcon } from "@heroicons/react/24/solid";
 import { formatearSoloFecha } from "../../../utils/formatter";
 
 
-const ModalHistorialKilos = ({historial,setHistorial}) => {
+const ModalHistorialKilos = ({historial,setHistorial,setTermino}) => {
 
     const cerrarModal =()=>{
       setHistorial({});
+      setTermino("");
       document.getElementById("modal_historial").close()
     };
 
@@ -29,7 +29,7 @@ const ModalHistorialKilos = ({historial,setHistorial}) => {
 
           <div className="space-y-2 max-h-80 overflow-y-auto p-2 ">
             {Object.keys(historial).map((fecha) => (
-              <div key={fecha} className="bg-white p-4 rounded-lg shadow-md">
+              <div key={fecha} className="bg-gray-50 p-4 rounded-lg shadow-md">
                 {/* Fecha como encabezado */}
                 <h3 className="text-md font-semibold text-[#3F3F3F] border-b pb-2">
                   {formatearSoloFecha(fecha)}

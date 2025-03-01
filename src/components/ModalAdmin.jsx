@@ -84,7 +84,7 @@ const ModalAdmin = ({finca,dispatch}) => {
                 type="text"
                 readOnly
                 value={finca.nombre}
-                className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none  bg-gray-50 text-[#1B1B1B]"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none  bg-gray-50 text-[#1B1B1B]"
                 />
             
             </div>  
@@ -97,7 +97,7 @@ const ModalAdmin = ({finca,dispatch}) => {
                 name="id_administrador"
                 type="text"
                 placeholder="Cédula"
-                className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none  bg-gray-50 text-[#1B1B1B]"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none  bg-gray-50 text-[#1B1B1B]"
 
               />
               <ErrorMessage

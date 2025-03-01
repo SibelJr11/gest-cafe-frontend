@@ -6,10 +6,11 @@ import { convertirAPesosColombiano, formatearSoloFecha } from "../../../utils/fo
 import { actualizarEstado } from "../../../store/slices/stateSlice";
 
 
-const ModalAdelantos = ({historial,setHistorial,id_asignacion,dispatch}) => {
+const ModalAdelantos = ({historial,setHistorial,setTermino,id_asignacion,dispatch}) => {
   const [mensaje,setMensaje]=useState("");
    const cerrarModal =()=>{
     setHistorial({});
+    setTermino("");
     document.getElementById("modal_adelantos").close()
    };
 
@@ -62,7 +63,7 @@ const ModalAdelantos = ({historial,setHistorial,id_asignacion,dispatch}) => {
           <Field
             type="text"
             name="valor"
-             className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none  bg-gray-50 text-[#1B1B1B]"
+             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none  bg-gray-50 text-[#1B1B1B]"
             placeholder="Monto"
             
           />
@@ -90,7 +91,7 @@ const ModalAdelantos = ({historial,setHistorial,id_asignacion,dispatch}) => {
         <h3 className="text-xl font-semibold  text-[#1B1B1B] mt-4">Historial de adelantos</h3>
         <div className="space-y-2 max-h-80 overflow-y-auto p-2">
         {Object.keys(historial).map((fecha) => (
-              <div key={fecha} className="bg-white p-4 rounded-lg shadow-md">
+              <div key={fecha} className=" bg-gray-50 p-4 rounded-lg shadow-md">
                 {/* Fecha como encabezado */}
                 <h3 className="text-md font-semibold text-[#3F3F3F] border-b pb-2">
                   {formatearSoloFecha(fecha)}

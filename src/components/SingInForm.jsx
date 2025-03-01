@@ -63,7 +63,7 @@ const SingInForm = () => {
                 name="no_identificacion"
                 type="text"
                 placeholder="Usuario"
-                className="input input-bordered w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none bg-gray-50 text-[#1B1B1B]"
+                className="input input-bordered w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none bg-gray-50 text-[#1B1B1B]"
               />
               <ErrorMessage
                 name="no_identificacion"
@@ -81,7 +81,7 @@ const SingInForm = () => {
                 name="password"
                 type="password"
                 placeholder="Contraseña"
-                className="input input-borderedw-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none bg-gray-50 text-[#1B1B1B]"
+                className="input input-borderedw-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none bg-gray-50 text-[#1B1B1B]"
               />
               <ErrorMessage
                 name="password"

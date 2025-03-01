@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactEcharts from 'echarts-for-react';
 
-const FincaChart = ({infoFincas}) => {
+const FincasChart = ({infoFincas}) => {
   const fincas =infoFincas.map((item)=>item.nombre); 
   const kilos = infoFincas.map((item) => item.total_kilos);
   const pagos = infoFincas.map((item) => item.total_pagos);
@@ -36,4 +36,4 @@ const FincaChart = ({infoFincas}) => {
   return <ReactEcharts option={option} />;
 };
 
-export default FincaChart;
+export default FincasChart;
