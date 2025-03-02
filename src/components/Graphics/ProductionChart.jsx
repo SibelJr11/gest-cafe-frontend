@@ -6,7 +6,7 @@ const ProductionChart = ({totalesFinca}) => {
   const kilos = totalesFinca.map((item) => item.total_kilos); 
 
   const option = {
-    title: { text: 'Kilos recolectados por mes',left: 'center',textStyle:{ color: '#3F3F3F'}, fontStyle:'semibold' },
+    title: { text: 'Kilos recolectados por mes',left: 'center',textStyle:{ color: '#3F3F3F',fontSize: 16}, fontStyle:'semibold' },
     legend: {
       data: ['Kilos recolectados'],
       bottom: 0,

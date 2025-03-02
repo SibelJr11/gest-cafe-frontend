@@ -6,9 +6,11 @@ import { showErrorAlert, showSuccessAlert } from "./Alerts/AlertService";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setAuth } from "../store/slices/authSlice";
+import { io } from "socket.io-client";
 
 
 const SingInForm = () => {
+  const socket = io("https://gestcafe-backend.onrender.com"); // Conéctate al servidor
   const dispatch = useDispatch();
   const navigate = useNavigate(); 
 
@@ -29,13 +31,12 @@ const SingInForm = () => {
         const response = await loginUsuario(values);
         const { usuario, token } = response;
         dispatch(setAuth({usuario,token}));
-        const nombresUsuario = response.usuario?.nombres;
-        const apellidosUsuario = response.usuario?.apellidos;
-        showSuccessAlert(`Bienvenido, ${nombresUsuario+" "+ apellidosUsuario}`,response.message,2000);
+        socket.emit("userLoggedIn", { id: usuario.no_identificacion, nombre: usuario.nombres +" "+usuario.apellidos });
+        showSuccessAlert(`Bienvenido, ${usuario.nombres +" "+usuario.apellidos}`,response.message,2000);
         resetForm();
         navigate("/farms");
     } catch (error) {
-        showErrorAlert("Hubo un error al iniciar sesión", error.response.data.error);
+        showErrorAlert("Hubo un error al iniciar sesión", error.response.data.message);
     }
 };
 

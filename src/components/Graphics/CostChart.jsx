@@ -7,7 +7,7 @@ const CostChart = ({totalesFinca}) => {
   const pagos = totalesFinca.map((item) => item.total_pagos);
 
   const option = {
-    title: { text: 'Pago Mensual a trabajadores', left: 'center',textStyle:{ color: '#3F3F3F'}, fontStyle:'semibold' },
+    title: { text: 'Pago Mensual a trabajadores', left: 'center',textStyle:{ color: '#3F3F3F',fontSize: 16}, fontStyle:'semibold' },
     legend: {
       data: ['Pago de Trabajadores'],
       bottom: 0,

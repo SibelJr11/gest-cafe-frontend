@@ -63,7 +63,7 @@ const Table = ({ventas,abrirModalVenta}) => {
                                   <td className="border-b border-gray-300 text-xs md:text-sm">{calcularCargas(e.cantidad)}</td>
                                   <td className="border-b border-gray-300 font-semibold  text-md md:text-lg">{convertirAPesosColombiano(e.valor)}</td>                         
                                   <td className="text-center border-b border-gray-300 ">
-                                    <div className={`badge badge-sm text-xs xs:w-full md:badge-lg py-4 font-semibold border-none ${getCafeClass(e.tipo_cafe)}`} >
+                                    <div className={`badge badge-sm text-xs xs:w-full md:badge-lg md:text-sm py-4 font-semibold border-none ${getCafeClass(e.tipo_cafe)}`} >
                                        {e.tipo_cafe}
                                     </div>         
                                   </td>    

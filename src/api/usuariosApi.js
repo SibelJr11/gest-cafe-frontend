@@ -34,3 +34,15 @@ export const verificarUsuario = async (id_administrador) => {
             throw error;
       }
 };
+
+export const getUsuarios = async () => {
+      try {
+            const response = await axiosInstance.get(
+                  "/api/usuarios/"
+            );
+            return response.data;
+      } catch (error) {
+            console.error("Hubo un error al recuperar los usuarios de GestCafe", error);
+            throw error;
+      }
+};

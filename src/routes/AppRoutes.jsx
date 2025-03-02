@@ -8,10 +8,11 @@ import NotFoundPage from "../pages/NotFoundPage"; // Nueva página 404
 import HomeRoutes from "./HomeRoutes"
 import HomePage from "../pages/HomePage";
 import PlanesPage from "../pages/PlanesPage";
+import CPanelPage from "../pages/CPanelPage";
 
 const AppRoutes = [
       { path: "/", element: <LoginPage />, isPublic: true },
-      { path: "/planes", element: <PlanesPage />, isPublic: true },
+      { path: "/cpanel", element: <CPanelPage />, isPublic: true },
       { path: "/register-user", element: <UserRegisterPage />, isPublic: true },
       { path: "/register-farm", element: <FarmRegisterPage />, isPublic: true },
       { path: "/farms", element: <FarmsPage />, role: ["ADMINISTRADOR", "PROPIETARIO"] }, // Solo admin y propietario

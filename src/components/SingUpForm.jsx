@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import { registrarUsuario, verificarUsuario } from "../api/usuariosApi";
 import { showErrorAlert, showSuccessAlert } from "./Alerts/AlertService";
 import { useNavigate } from "react-router-dom";
+import { registrarSuscripcion } from "../api/suscripcionesApi";
 
 const SingUpForm = () => {
   const navigate = useNavigate();
@@ -70,6 +71,7 @@ const SingUpForm = () => {
                  const response = await registrarUsuario(values);
                  showSuccessAlert(response.message);
                  if(values.rol === 'PROPIETARIO'){
+                  await guardarSuscripcion(values.no_identificacion);
                   localStorage.setItem("propietario",values.no_identificacion);
                    navigate('/register-farm');
                    resetForm();
@@ -81,6 +83,16 @@ const SingUpForm = () => {
                showErrorAlert('Hubo un error al registrar el usuario!',error.response.data.error)
            }
   };
+  const guardarSuscripcion = async (no_identificacion) => {
+    try {
+              const suscripcion ={id_usuario:no_identificacion}
+               const response = await registrarSuscripcion(suscripcion);
+               console.log(response.message);
+              
+         } catch (error) {
+             console.log('Hubo un error al registrar la suscripción!',error.response.data.error)
+         }
+};
 
   return (
 <div className="card rounded-none  w-full max-w-xl shrink-0 shadow-2xl bg-white md:rounded-2xl">

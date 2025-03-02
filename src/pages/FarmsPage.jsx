@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { getFincasPorIdAdministrador, getFincasPorIdPropietario } from '../api/fincasApi';
 import {useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import Footer from "../components/Footer";
 
 const FarmsPage = () => {
     const[fincas,setFincas] = useState([]);
@@ -36,7 +37,7 @@ const FarmsPage = () => {
 
 
   return (
-    <div className="h-screen  flex flex-col bg-white p-4" >
+    <div className="min-h-screen flex flex-col bg-white p-4" >
      
        <span className='text-center text-lg md:text-2xl font-semibold text-[#1B1B1B] mt-4'>Mis fincas cafeteras</span>
        <p className="text-sm md:text-md mt-4 text-[#3F3F3F]">Selecciona o haz clic en la finca que deseas gestionar.</p>
@@ -80,6 +81,7 @@ const FarmsPage = () => {
       
           ))}
            </div>
+           <Footer/>
     </div>
   );
 };

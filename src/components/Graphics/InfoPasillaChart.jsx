@@ -7,7 +7,7 @@ const InfoPasillaChart = ({ pasilla }) => {
   const mes = pasilla.map((item) => item.mes);
 
   const option = {
-    title: { text: 'Producción Mensual de PASILLA',left: 'center',textStyle:{ color: '#3F3F3F'} },
+    title: { text: 'Producción Mensual de PASILLA',left: 'center',textStyle:{ color: '#3F3F3F',fontSize: 16} },
     tooltip: {
       trigger: 'axis',
       axisPointer: { type: 'shadow' },

@@ -40,7 +40,7 @@ const ModalHistorialKilos = ({historial,setHistorial,setTermino}) => {
                   {historial[fecha].map((registro) => (
                     <li
                       key={registro.id}
-                      className="flex justify-between items-center p-3 bg-[#c4f4be]  rounded-lg shadow-sm"
+                      className="flex justify-between items-center p-3 bg-green-100 rounded-lg shadow-sm border border-green-200"
                     >
                       <span className="text-[#5E5E5E]">{registro.hora}</span>
                       <span className="text-lg font-semibold text-[#1A4D2E]">{registro.kilos} kg</span>

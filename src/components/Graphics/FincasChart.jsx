@@ -7,7 +7,7 @@ const FincasChart = ({infoFincas}) => {
   const pagos = infoFincas.map((item) => item.total_pagos);
 
   const option = {
-    title: { text: 'Pago y Recolecta de café por finca', left: 'center',textStyle:{ color: '#3F3F3F'}},
+    title: { text: 'Pago y Recolecta de café por finca', left: 'center',textStyle:{ color: '#3F3F3F',fontSize: 16}},
     tooltip: {},
     legend: {
       data: ['Kilos recolectados', 'Pago de trabajadores'],
