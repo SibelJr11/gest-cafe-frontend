@@ -12,11 +12,13 @@ const HomeLayout = () => {
         <Navbar />
 
         {/* 🔄 Outlet renderiza la subruta correspondiente según la URL */}
-        <div className="p-3 md:p-4 bg-gray-200 overflow-auto h-[calc(100vh-64px)]">
-          <Outlet /> {/* Aquí se insertará la subruta correcta */}
-          <Footer />
-          
-        </div>
+        <div className="flex flex-col flex-grow p-3 md:p-4 bg-gray-200 overflow-auto h-[calc(100vh-64px)]">
+  <div className="flex-grow">
+    <Outlet /> {/* Aquí se renderiza el contenido dinámico */}
+  </div>
+  <Footer />
+</div>
+
       </div>
 
       {/* Sidebar */}

@@ -36,7 +36,7 @@ const SingInForm = () => {
         resetForm();
         navigate("/farms");
     } catch (error) {
-        showErrorAlert("Hubo un error al iniciar sesión", error.response.data.message);
+        showErrorAlert("Hubo un error al iniciar sesión", error.response.data.error || error.response.data.message);
     }
 };
 

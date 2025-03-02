@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { actualizarEstado } from "../store/slices/stateSlice";
 
 const FarmRegisterForm = ({finca}) => {
-  const usuario = useSelector((state) => state.usuario);
+  const usuario = useSelector((state) => state.auth.usuario);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const ruta= "/register-farm";
@@ -45,8 +45,7 @@ const validationSchema = Yup.object({
     ubicacion:finca?.ubicacion || '',
     cultivo:finca?.cultivo || '',
     hectareas:finca?.hectareas || '',
-    id_propietario: usuario?.no_identificacion  || propietario ,
-  };
+    id_propietario: finca ? usuario.no_identificacion : (propietario || usuario.no_identificacion)};
 
   const guardarFinca = async (values, { resetForm }) => {
     try {     
