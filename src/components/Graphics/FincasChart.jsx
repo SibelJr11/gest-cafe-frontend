@@ -11,11 +11,17 @@ const FincasChart = ({infoFincas}) => {
     tooltip: {},
     legend: {
       data: ['Kilos recolectados', 'Pago de trabajadores'],
-      bottom: 0,
-      textStyle:{ color: '#3F3F3F'}
+      bottom: '5%', // Baja la leyenda
+      textStyle: { color: '#3F3F3F' }
     },
-    grid: { left: '9%', right: '7%', bottom: '20%' },
-    xAxis: {  name:'Fincas',type: 'category', data:fincas},   
+    grid: { left: '9%', right: '7%', bottom: '30%' }, // Más espacio inferior
+    xAxis: {  name:'Fincas',type: 'category', data:fincas,
+      axisLabel: {
+        rotate: fincas.length > 4 ? 45 : 0, 
+        interval: 0, 
+        fontSize: 10
+      }
+    },   
     yAxis: { type: 'value'},
     series: [
       {

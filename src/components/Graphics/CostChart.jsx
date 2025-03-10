@@ -10,12 +10,17 @@ const CostChart = ({totalesFinca}) => {
     title: { text: 'Pago Mensual a trabajadores', left: 'center',textStyle:{ color: '#3F3F3F',fontSize: 16}, fontStyle:'semibold' },
     legend: {
       data: ['Pago de Trabajadores'],
-      bottom: 0,
+      bottom: '5%',
       textStyle:{ color: '#3F3F3F'}
     },
-    grid: { left: '9%', right: '7%', bottom: '20%' },
+    grid: { left: '9%', right: '7%', bottom: '30%' },
     tooltip: {},
-    xAxis: { name:'Meses',type: 'category', data: meses },
+    xAxis: { name:'Meses',type: 'category', data: meses,
+      axisLabel: {
+        rotate: meses.length > 4 ? 45 : 0, // Si hay más de 6 meses, rota las etiquetas 45°
+        interval: 0, // Muestra todas las etiquetas
+        fontSize: 10
+      }},
     yAxis: { type: 'value',name: 'Valor (CO)' },
     series: [
   

@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { registrarUsuario, verificarUsuario } from "../api/usuariosApi";
 import { showErrorAlert, showSuccessAlert } from "./Alerts/AlertService";
 import { useNavigate } from "react-router-dom";
 import { registrarSuscripcion } from "../api/suscripcionesApi";
+import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/solid";
 
 const SingUpForm = () => {
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
 
   const validarUsuarioExistente = async (no_identificacion) => {
     if (!no_identificacion) return true; // Si no hay ID, pasa la validación (en caso de no asignar administrador)
@@ -64,6 +66,10 @@ const SingUpForm = () => {
     celular: '',
     correo: '',
     password: '',
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
   };
   
   const guardarUsuario = async (values,{ resetForm }) => {
@@ -257,11 +263,21 @@ const SingUpForm = () => {
                   Crea una contraseña segura
                 </span>
               </label>
-              <Field
-                type="password"
-                name="password"
-                className="input input-bordered w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none bg-gray-50 text-[#1B1B1B]"
-              />
+              <div className="relative">
+                <Field
+                  name="password"
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Contraseña"
+                  className="input input-bordered w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none bg-gray-50 text-[#1B1B1B] pr-10"
+                />
+                <button
+                  type="button"
+                  onClick={togglePasswordVisibility}
+                  className="absolute inset-y-0 right-3 flex items-center text-[#3F3F3F]  hover:text-[#1B1B1B]"
+                >
+                  {showPassword ? <EyeSlashIcon className="w-5 h-5" /> : <EyeIcon className="w-5 h-5" />}
+                </button>
+              </div>
               <ErrorMessage
                 name="password"
                 component="div"

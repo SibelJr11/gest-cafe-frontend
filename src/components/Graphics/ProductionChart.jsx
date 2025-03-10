@@ -6,15 +6,21 @@ const ProductionChart = ({totalesFinca}) => {
   const kilos = totalesFinca.map((item) => item.total_kilos); 
 
   const option = {
-    title: { text: 'Kilos recolectados por mes',left: 'center',textStyle:{ color: '#3F3F3F',fontSize: 16}, fontStyle:'semibold' },
+    title: { text: 'Kilos recolectados por mes',left: 'center',textStyle:{ color: '#3F3F3F',fontSize: 16}},
     legend: {
       data: ['Kilos recolectados'],
-      bottom: 0,
+      bottom: '5%', // Baja la leyenda
       textStyle:{ color: '#3F3F3F'}
     },
-    grid: { left: '9%', right: '7%', bottom: '20%' },
+    grid: { left: '9%', right: '7%', bottom: '30%' }, // Más espacio inferior
     tooltip: {},
-    xAxis: { type: 'category', data: meses },
+    xAxis: { type: 'category', data: meses,
+      axisLabel: {
+        rotate: meses.length > 4 ? 45 : 0, 
+        interval: 0, 
+        fontSize: 10
+      }
+     },
     yAxis: { type: 'value',name: 'Producción (kg)' },
     series: [{
       name: 'Kilos recolectados',

@@ -31,8 +31,7 @@ const AnalyticsPage = () => {
       fetchInfoFincas();
       fetchDataVentasCafeSeco();
       fetchDataVentasCafeVerde();
-      fetchDataVentasPasilla();
-     
+      fetchDataVentasPasilla();  
    }, [estado]);
 
 

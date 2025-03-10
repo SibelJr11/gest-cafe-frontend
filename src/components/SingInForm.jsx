@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { loginUsuario } from "../api/usuariosApi";
@@ -7,12 +7,13 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setAuth } from "../store/slices/authSlice";
 import { io } from "socket.io-client";
-
+import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/solid";
 
 const SingInForm = () => {
   const socket = io("https://gestcafe-backend.onrender.com"); // Conéctate al servidor
   const dispatch = useDispatch();
   const navigate = useNavigate(); 
+  const [showPassword, setShowPassword] = useState(false);
 
   // Esquema de validación con Yup
   const validationSchema = Yup.object({
@@ -23,6 +24,10 @@ const SingInForm = () => {
       .required("La contraseña es obligatoria *")
       .min(6, "La contraseña debe tener al menos 6 caracteres *"),
   });
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
 
   // Función de envío del formulario
@@ -73,24 +78,28 @@ const SingInForm = () => {
               />
             
             </div>
-
-            <div className="form-control">
-                 <label className="text-sm mb-1 text-[#3F3F3F]">
-                   Ingrese su contraseña.
-                  </label>
-              <Field
-                name="password"
-                type="password"
-                placeholder="Contraseña"
-                className="input input-borderedw-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none bg-gray-50 text-[#1B1B1B]"
-              />
-              <ErrorMessage
-                name="password"
-                component="div"
-                className="text-red-500 text-sm mt-1"
-              />
+            <div className="form-control relative">
+            <label className="text-sm mb-1 text-[#3F3F3F]">
+              Ingrese su contraseña.
+             </label>
+              <div className="relative">
+                <Field
+                  name="password"
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Contraseña"
+                  className="input input-bordered w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none bg-gray-50 text-[#1B1B1B] pr-10"
+                />
+                <button
+                  type="button"
+                  onClick={togglePasswordVisibility}
+                  className="absolute inset-y-0 right-3 flex items-center text-[#3F3F3F]  hover:text-[#1B1B1B]"
+                >
+                  {showPassword ? <EyeSlashIcon className="w-5 h-5" /> : <EyeIcon className="w-5 h-5" />}
+                </button>
+              </div>
+              <ErrorMessage name="password" component="div" className="text-red-500 text-sm mt-1" />
               <label className="label">
-                <a href="#" className="label-text-alt link link-hover  text-[#5E5E5E]">
+                <a href="/reset-password" className="label-text-alt link link-hover  text-[#5E5E5E]">
                   ¿Olvidaste tu contraseña?
                 </a>
                 <br />

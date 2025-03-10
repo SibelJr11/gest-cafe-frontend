@@ -46,3 +46,13 @@ export const getUsuarios = async () => {
             throw error;
       }
 };
+
+export const resetPasswordUsuario = async (idUsuario,usuario) => {
+      try {
+            const response = await axiosInstance.put(`/api/usuarios/reset-password/${idUsuario}`, usuario);
+            return response.data;
+      } catch (error) {
+            console.error("Hubo un error al registrar una nueva contraseña", error);
+            throw error;
+      }
+};

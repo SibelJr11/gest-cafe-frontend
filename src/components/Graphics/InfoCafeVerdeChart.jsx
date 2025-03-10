@@ -14,14 +14,19 @@ const InfoCafeVerdeChart = ({cafeVerde}) => {
     },
     legend: {
       data: ['Cantidad en kilos' , 'Valor café verde'],
-      bottom: 0,
-      textStyle:{ color: '#3F3F3F'}
+      bottom: '5%', // Baja la leyenda
+      textStyle: { color: '#3F3F3F' }
     },
-    grid: { left: '9%', right: '7%', bottom: '20%' },
+    grid: { left: '9%', right: '7%', bottom: '30%' }, // Más espacio inferior
     xAxis: {
-      name:'Meses',
+      name: 'Meses',
       type: 'category',
-      data:mes
+      data: mes,
+      axisLabel: {
+        rotate: mes.length > 4 ? 45 : 0, 
+        interval: 0, 
+        fontSize: 10
+      }
     },
     yAxis: [
       {
